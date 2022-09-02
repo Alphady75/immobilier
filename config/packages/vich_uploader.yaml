@@ -1,7 +1,31 @@
 vich_uploader:
     db_driver: orm
 
-    #mappings:
-    #    products:
-    #        uri_prefix: /images/products
-    #        upload_destination: '%kernel.project_dir%/public/images/products'
+    mappings:
+        immobiliers_images:
+            uri_prefix: /uploads/images/immobiliers
+            upload_destination: '%kernel.project_dir%/public/uploads/images/immobiliers'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            delete_on_update: true
+            delete_on_remove: true
+
+        annonces_images:
+            uri_prefix: /uploads/images/annonces
+            upload_destination: '%kernel.project_dir%/public/uploads/images/annonces'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            delete_on_update: true
+            delete_on_remove: true
+
+        villes_images:
+            uri_prefix: /uploads/images/villes
+            upload_destination: '%kernel.project_dir%/public/uploads/images/villes'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            delete_on_update: true
+            delete_on_remove: true
+
+        users_avatars:
+            uri_prefix: /uploads/images/users
+            upload_destination: '%kernel.project_dir%/public/uploads/images/users'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            delete_on_update: true
+            delete_on_remove: true
