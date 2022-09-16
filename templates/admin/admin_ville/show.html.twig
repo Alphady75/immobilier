@@ -1,0 +1,42 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Ville{% endblock %}
+
+{% block body %}
+    <h1>Ville</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ville.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ ville.name }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ ville.slug }}</td>
+            </tr>
+            <tr>
+                <th>ImageName</th>
+                <td>{{ ville.imageName }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ ville.created ? ville.created|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Updated</th>
+                <td>{{ ville.updated ? ville.updated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_ville_index') }}">back to list</a>
+
+    <a href="{{ path('admin_ville_edit', {'id': ville.id}) }}">edit</a>
+
+    {{ include('admin/admin_ville/_delete_form.html.twig') }}
+{% endblock %}

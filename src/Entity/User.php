@@ -66,9 +66,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
     #[ORM\Column(type: 'string', length: 60, nullable: true)]
     private $compte;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Annonce::class)]
+    private $annonces;
+
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $biographie;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $adresse;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $telephone;
+
     public function __construct()
     {
         $this->immobiliers = new ArrayCollection();
+        $this->annonces = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -265,6 +278,77 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
     public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nom . ' ' . $this->prenom;
+    }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getAnnonces(): Collection
+    {
+        return $this->annonces;
+    }
+
+    public function addAnnonce(Annonce $annonce): self
+    {
+        if (!$this->annonces->contains($annonce)) {
+            $this->annonces[] = $annonce;
+            $annonce->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnonce(Annonce $annonce): self
+    {
+        if ($this->annonces->removeElement($annonce)) {
+            // set the owning side to null (unless already changed)
+            if ($annonce->getUser() === $this) {
+                $annonce->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getBiographie(): ?string
+    {
+        return $this->biographie;
+    }
+
+    public function setBiographie(?string $biographie): self
+    {
+        $this->biographie = $biographie;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(?string $telephone): self
+    {
+        $this->telephone = $telephone;
 
         return $this;
     }

@@ -1,0 +1,78 @@
+{{ form_start(form) }}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Annonce</h3>
+
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+          </div>
+      </div>
+
+      <div class="card-body">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="table-responsive">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <th class="w-25">Titre</th>
+                                <td>{{ form_row(form.name) }}</td>
+                            </tr>
+                            <tr>
+                                <th class="w-25">Catégorie</th>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            {{ form_row(form.categorie) }}
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="w-25">Image</th>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            {% if app.request.attributes.get('_route') == 'admin_user_new' %}
+
+                                                {{ include('admin/admin_annonces/_icone.html.twig') }}
+
+                                            {% else %}
+
+                                                {{ include('admin/admin_annonces/_image.html.twig') }}
+
+                                            {% endif %}
+                                            
+                                            {{ form_row(form.imageFile) }}
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th class="w-25">Description</th>
+                                <td>{{ form_row(form.description) }}</td>
+                            </tr>
+
+                            <tr>
+                                <th class="w-25">Visibilité</th>
+                                <td>{{ form_row(form.online) }}</td>
+                            </tr>
+
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>            
+            </div>
+        </div>        
+    </div>
+</div>
+
+{{ form_end(form) }}

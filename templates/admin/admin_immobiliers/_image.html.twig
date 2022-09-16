@@ -1,0 +1,10 @@
+{% if immobilier.imageName %}
+
+<img src="{{ vich_uploader_asset(immobilier) | imagine_filter('medium_size') }}" class="img-fluid mt-3 mb-3" 
+	alt="{{ immobilier.name }}">
+
+{% else %}
+
+{{ include('admin/admin_immobiliers/_icone.html.twig') }}
+
+{% endif %}

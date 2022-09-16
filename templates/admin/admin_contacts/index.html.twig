@@ -1,0 +1,34 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Messagerie{% endblock %}
+
+{% block pagelink %}
+  <li class="breadcrumb-item"><a href="{{ path('admin_contacts_index') }}">Messagerie</a></li>
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+  <div class="col-md-4">
+    {{ include('admin/admin_contacts/_sidebar.html.twig') }}
+  </div>
+  <!-- /.col -->
+  <div class="col-md-8">
+    <div class="card card-default card-outline">
+      <div class="card-header">
+        <h3 class="card-title">Messagerie</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body p-0">
+        {{ include('admin/admin_contacts/_messages.html.twig') }}
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer bg-white">
+        
+      </div>
+    </div>
+    <!-- /.card-footer -->
+  </div>
+  <!-- /.card -->
+</div>
+{% endblock %}

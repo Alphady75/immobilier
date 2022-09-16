@@ -1,0 +1,49 @@
+<div class="card card-default">
+	<div class="card-header">
+		<div class="card-title">
+			Immobilier
+		</div>
+	</div>
+	<div class="card-body">
+		<div>
+			<div class="btn-group w-100 mb-2">
+				<a class="btn btn-info active" href="javascript:void(0)" data-filter="all"> Toute les catégories </a>
+				{% for categorie in categories %}
+				<a class="btn btn-info" href="javascript:void(0)" data-filter="{{ categorie.slug }}"> {{ categorie.name }} </a>
+				{% endfor %}
+			</div>
+			<div class="mb-2">
+				<a class="btn btn-secondary" href="javascript:void(0)" data-shuffle> Shuffle items </a>
+				<div class="float-right">
+					<!--<select class="custom-select" style="width: auto;" data-sortOrder>
+						<option value="index"> Sort by Position </option>
+						<option value="sortData"> Sort by Custom Data </option>
+					</select>-->
+					<div class="btn-group">
+						<a class="btn btn-default" href="javascript:void(0)" data-sortAsc> Croissant </a>
+						<a class="btn btn-default" href="javascript:void(0)" data-sortDesc> Décroissant </a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div class="filter-container p-0 row">
+
+				{% for immobilier in immobiliers %}
+
+				<div class="filtr-item col-sm-2" data-category="{{ immobilier.categorie.slug ?? '' }}" data-sort="{{ immobilier.categorie.slug ?? '' }}">
+					<a href="{{ immobilier.imageName ? vich_uploader_asset(immobilier) | imagine_filter('medium_size') : '' }}" data-toggle="lightbox" data-title="{{ immobilier.name }}">
+
+						{{ include('admin/admin_immobiliers/_image.html.twig') }}
+
+					</a>
+				</div>
+
+				{% else %}
+
+				{% endfor %}
+			</div>
+		</div>
+
+	</div>
+</div>

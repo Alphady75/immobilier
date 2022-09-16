@@ -1,0 +1,82 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Message de: {{ contact.civilite ~ ' ' ~ contact.nom ~ ' ' ~ contact.prenom }}{% endblock %}
+
+{% block pagelink %}
+<li class="breadcrumb-item"><a href="{{ path('admin_contacts_index') }}">Messagerie</a></li>
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+  <div class="col-md-4">
+
+    {{ include('admin/admin_contacts/_sidebar.html.twig') }}
+
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Bien Immobilier</h3>
+            
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+            <ul class="nav nav-pills flex-column">
+                {{ include('admin/admin_contacts/_li_immobilier.html.twig') }}
+            </ul>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
+</div>
+<!-- /.col -->
+<div class="col-md-8">
+    <div class="card card-default card-outline">
+        <div class="card-header">
+          <h3 class="card-title">Lire le courrier</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+            </button>
+        </div>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body p-0">
+          <div class="mailbox-read-info with-border">
+            <h5>Message de {{ contact.civilite }} {{ contact.nom ~ ' ' ~ contact.prenom }}</h5>
+            <h6>Courier: <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
+              <span class="mailbox-read-time float-right"><i class="fa fa-clock"></i> {{ contact.created|ago }}</span>
+          </h6>
+          </div>
+          <!-- /.mailbox-controls -->
+          <div class="mailbox-read-message">
+            <p>
+                Salut 
+                <strong>
+                    {{ contact.immobilier.user.nom }} {{ contact.immobilier.user.prenom }}
+                </strong>, de <strong>{{ appName }}</strong>
+            </p>
+
+            {{ contact.message|raw }}
+
+            <br> <br>
+
+            <p>Merci,<br>{{ contact.nom ~ ' ' ~ contact.prenom }}</p>
+        </div>
+        <!-- /.mailbox-read-message -->
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer bg-white">
+      {{ include('admin/admin_contacts/_delete_form.html.twig') }}
+  </div>
+</div>
+<!-- /.card-footer -->
+</div>
+<!-- /.card -->
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+<div class="card__image">
+	<div class="card__image-header h-250">
+		{% if annonce.imageName %}
+
+			<img src="{{ vich_uploader_asset(annonce) | imagine_filter('medium_size') }}" 
+				class="img-fluid w100 img-transition" alt="{{ annonce.name }}">
+		{% else %}
+
+			<img src="{{ asset('themes/front/images/gal/1.jpg') | imagine_filter('medium_size') }}" 
+				class="img-fluid w100 img-transition" alt="{{ annonce.name }}">
+
+		{% endif %}
+		
+		<div class="info"> {{ annonce.categorie.name }}</div>
+	</div>
+	<div class="card__image-body">
+		<span class="badge badge-secondary p-1 text-capitalize mb-3">{{ annonce.created|date('d/m/Y') }} </span>
+		<h6 class="text-capitalize">
+			<a href="{{ path('annonces_details', {slug: annonce.slug}) }}">{{ annonce.name }}</a>
+		</h6>
+		<p class=" mb-0">
+			Real estate festival is one of the famous feval for explain to you how all this mistaolt
+			deand praising pain
+			wasnad I will give complete
+
+		</p>
+
+
+	</div>
+	<div class="card__image-footer">
+		<figure>
+			{% if annonce.user.avatar %}
+
+			<img src="{{ vich_uploader_asset(annonce.user) | imagine_filter('medium_avatar') }}" class="img-fluid rounded-circle">
+
+			{% else %}
+
+			<img src="{{ asset('img/user.jpg') }}" alt="" class="img-fluid rounded-circle">
+
+			{% endif %}
+		</figure>
+		<ul class="list-inline my-auto">
+			<li class="list-inline-item ">
+				<a href="{{ path('annonces_details', {slug: annonce.slug}) }}">
+					{{ annonce.user.nom ~ ' ' ~ annonce.user.prenom }}
+				</a>
+
+			</li>
+
+		</ul>
+		<ul class="list-inline my-auto ml-auto">
+			<li class="list-inline-item ">
+				<a href="{{ path('annonces_details', {slug: annonce.slug}) }}" class="btn btn-sm btn-primary "><small
+					class="text-white ">Lire plus <i
+					class="fa fa-angle-right ml-1"></i></small>
+				</a>
+			</li>
+
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,48 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Immobiliers{% endblock %}
+
+{% block pagelink %}
+    <li class="breadcrumb-item"><a href="{{ path('admin_immobiliers_index') }}">Biens immobiliers</a></li>
+{% endblock %}
+
+{% block body %}
+
+{{ include('admin/admin_immobiliers/_table.html.twig') }}
+
+{% endblock %}
+
+
+{% block javascripts %}
+<!-- jQuery -->
+<script src="{{ asset('themes/admin/plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap -->
+<script src="{{ asset('themes/admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- jQuery UI -->
+<script src="{{ asset('themes/admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+<!-- Ekko Lightbox -->
+<script src="{{ asset('themes/admin/plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('themes/admin/js/adminlte.min.js') }}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ asset('themes/admin/js/demo.js') }}"></script>
+<!-- Filterizr-->
+<script src="{{ asset('themes/admin/plugins/filterizr/jquery.filterizr.min.js') }}"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox({
+        alwaysShowClose: true
+      });
+    });
+
+    $('.filter-container').filterizr({gutterPixels: 3});
+    $('.btn[data-filter]').on('click', function() {
+      $('.btn[data-filter]').removeClass('active');
+      $(this).addClass('active');
+    });
+  })
+</script>
+{% endblock %}

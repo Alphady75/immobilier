@@ -1,0 +1,33 @@
+<h5 class="font-weight-bold pl-2 h3">Gallerie</h5>
+<div class="small-box p-3">
+	<div class="mb-3">
+		<div class="mb-2">
+			<a class="btn btn-default" href="javascript:void(0)" data-shuffle> 
+				({{ immobilier.immobilierMedia|length }}) Image{{ immobilier.immobilierMedia|length > 1 ? 's' : '' }} </a>
+			<!--<div class="float-right">
+				<div class="btn-group">
+					<a class="btn btn-default" href="javascript:void(0)" data-sortAsc> Ascending </a>
+					<a class="btn btn-default" href="javascript:void(0)" data-sortDesc> Descending </a>
+				</div>
+			</div>-->
+		</div>
+	</div>
+	<div>
+		<div class="filter-container p-0 row">
+
+			{% for media in immobilier.immobilierMedia %}
+			<div class="filtr-item col-sm-4" data-category="{{ media.id }}" data-sort="white sample">
+				<a href="https://via.placeholder.com/1200/FFFFFF.png?text=1" data-toggle="lightbox" data-title="{{ media.name }}" title="{{ media.name }}">
+					<img src="{{ vich_uploader_asset(media) | imagine_filter('large_avatar') }}" class="img-fluid mb-2" alt="{{ media.name }}"/>
+				</a>
+				<a href="{{ path('admin_immobilier_media_edit', {'id': media.id}) }}" class="btn btn-default text-secondary btn-sm"><i class="fa fa-edit"></i></a>
+
+				{{ include('admin/admin_immobilier_media/_delete_form.html.twig') }}
+			</div>
+			{% else %}
+
+			{% endfor %}
+		</div>
+	</div>
+
+</div>

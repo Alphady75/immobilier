@@ -1,0 +1,194 @@
+{{ form_start(form) }}
+    
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Immobilier</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+          </div>
+      </div>
+
+      <div class="card-body">
+
+        <div class="row">
+            <div class="col-md-8">
+                <h5 class="font-weight-bold pl-2 h3">Informations de base</h5>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th class="w-25">Intitulé</th>
+                            <td>{{ form_row(form.name) }}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">Image à la une</th>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-7">
+
+                                        {% if app.request.attributes.get('_route') == 'admin_immobiliers_edit' %}
+
+                                            {{ include('admin/admin_immobiliers/_image.html.twig') }}
+
+                                        {% else %}
+
+                                            {{ include('admin/admin_immobiliers/_icone.html.twig') }}
+
+                                        {% endif %}
+
+                                        {{ form_row(form.imageFile) }}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">Tarif</th>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {{ form_row(form.tarif) }}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h5 class="font-weight-bold pl-2 h3">Détails</h5>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th class="w-25">
+                                Surfaces
+
+                                <p>En m<sup>2</sup></p>
+                            </th>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        {{ form_row(form.surfaceMin) }}
+                                    </div>
+                                    <div class="col-sm-6">
+                                        {{ form_row(form.surfaceMax) }}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">Classement</th>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        {{ form_row(form.type) }}
+                                    </div>
+                                    <div class="col-sm-6">
+                                        {{ form_row(form.categorie) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        {{ form_row(form.statut) }}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">Description</th>
+                            <td>{{ form_row(form.description) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h5 class="font-weight-bold pl-2 h3">Localisation / Coordonnées</h5>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th class="w-25">Ville</th>
+                            <td>{{ form_row(form.ville) }}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">Référence</th>
+                            <td>
+                                {{ form_row(form.reference) }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h5 class="font-weight-bold pl-2 h3">Informations supplémentaires</h5>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th class="w-25">Options</th>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        {{ form_row(form.climatisation) }}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{ form_row(form.piscine) }}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{ form_row(form.chauffageCentral) }}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{ form_row(form.spaMassages) }}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{ form_row(form.gym) }}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{ form_row(form.alarme) }}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{ form_row(form.wifi) }}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{ form_row(form.parking) }}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{ form_row(form.chambres) }}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{ form_row(form.salleBain) }}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{ form_row(form.garage) }}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{ form_row(form.tailleGarage) }}
+                                    </div>
+                                    <div class="col-sm-4">
+                                        {{ form_row(form.anneeConstrunction) }}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th class="w-25">Visibilité</th>
+                            <td>{{ form_row(form.online) }}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25"></th>
+                            <td>
+                                <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {% if app.request.attributes.get('_route') == 'admin_immobiliers_edit' %}
+            <div class="col-md-4">
+                {{ include('admin/admin_immobiliers/_gallerie.html.twig') }}
+            </div>
+            {% endif %}
+        </div>
+      </div>
+        
+    </div>
+{{ form_end(form) }}

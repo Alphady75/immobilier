@@ -1,0 +1,244 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+	<!-- Brand Logo -->
+	<a href="{{ path('dashboard') }}" class="brand-link">
+		<img src="{{ asset('themes/front/images/logo.png') }}" alt="{{ appName }} Logo" class="brand-image">
+		<!--<span class="brand-text font-weight-light">{{ appName }}</span>-->
+	</a>
+
+	<!-- Sidebar -->
+	<div class="sidebar">
+		<!-- Sidebar user panel (optional) -->
+		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+			<div class="image">
+				{% if app.user.avatar %}
+
+				<img src="{{ vich_uploader_asset(app.user) | imagine_filter('medium_avatar') }}" class="img-circle elevation-2">
+
+				{% else %}
+
+				<img src="{{ asset('img/user.jpg') }}" class="img-circle elevation-2">
+
+				{% endif %}
+			</div>
+			<div class="info">
+				<a href="#" class="d-block">{{ app.user.nom ~ ' ' ~ app.user.prenom }}</a>
+			</div>
+		</div>
+
+		<!-- Sidebar Menu -->
+		<nav class="mt-2">
+			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+          	with font-awesome or any other icon font library -->
+          	<li class="nav-item has-treeview menu-open">
+          		<a href="#" class="nav-link active">
+          			<i class="nav-icon fas fa-tachometer-alt"></i>
+          			<p>
+          				Tableau de bord
+          				<i class="right fas fa-angle-left"></i>
+          			</p>
+          		</a>
+          		<ul class="nav nav-treeview">
+          			<li class="nav-item">
+          				<a href="{{ path('dashboard') }}" class="nav-link">
+          					<i class="far fa-circle nav-icon"></i>
+          					<p>Tableau de bord</p>
+          				</a>
+          			</li>
+          		</ul>
+          	</li>
+
+          	<!-- Immobiliers -->
+          	<li class="nav-item has-treeview">
+          		<a href="#" class="nav-link">
+          			<i class="nav-icon fas fa-home"></i>
+          			<p>
+          				Biens Immobiliers
+          				<i class="right fas fa-angle-left"></i>
+          			</p>
+          		</a>
+          		<ul class="nav nav-treeview">
+          			<li class="nav-item">
+          				<a href="{{ path('admin_immobiliers_new') }}" class="nav-link">
+          					<i class="far fa-circle nav-icon"></i>
+          					<p>Ajouter</p>
+          				</a>
+          			</li>
+          			<li class="nav-item">
+          				<a href="{{ path('admin_immobiliers_index') }}" class="nav-link">
+          					<i class="far fa-circle nav-icon"></i>
+          					<p>Liste</p>
+          				</a>
+          			</li>
+
+          			<li class="nav-item has-treeview">
+          				<a href="#" class="nav-link">
+          					<i class="fas fa-tags nav-icon"></i>
+          					<p>
+          						Catégories
+          						<i class="right fas fa-angle-left"></i>
+          					</p>
+          				</a>
+          				<ul class="nav nav-treeview">
+          					<li class="nav-item">
+          						<a href="{{ path('admin_categorie_immobilier_new') }}" class="nav-link">
+          							<i class="far fa-dot-circle nav-icon"></i>
+          							<p>Ajouter</p>
+          						</a>
+          					</li>
+          					<li class="nav-item">
+          						<a href="{{ path('admin_categorie_immobilier_index') }}" class="nav-link">
+          							<i class="far fa-dot-circle nav-icon"></i>
+          							<p>Liste</p>
+          						</a>
+          					</li>
+          				</ul>
+          			</li>
+          			<li class="nav-item has-treeview">
+          				<a href="#" class="nav-link">
+          					<i class="far fa-image nav-icon"></i>
+          					<p>
+          						Medias (Images)
+          						<i class="right fas fa-angle-left"></i>
+          					</p>
+          				</a>
+          				<ul class="nav nav-treeview">
+          					<li class="nav-item">
+          						<a href="{{ path('admin_immobilier_media_new') }}" class="nav-link">
+          							<i class="far fa-dot-circle nav-icon"></i>
+          							<p>Ajouter</p>
+          						</a>
+          					</li>
+          					<li class="nav-item">
+          						<a href="{{ path('admin_immobilier_media_index') }}" class="nav-link">
+          							<i class="far fa-dot-circle nav-icon"></i>
+          							<p>Liste</p>
+          						</a>
+          					</li>
+          				</ul>
+          			</li>
+          		</ul>
+          	</li>
+          	<!--/ Immobiliers -->
+
+          	<!-- Annonce -->
+          	<li class="nav-item has-treeview">
+          		<a href="#" class="nav-link">
+          			<i class="nav-icon fas fa-tags"></i>
+          			<p>
+          				Annonces
+          				<i class="right fas fa-angle-left"></i>
+          			</p>
+          		</a>
+          		<ul class="nav nav-treeview">
+          			<li class="nav-item">
+          				<a href="{{ path('admin_annonces_new') }}" class="nav-link">
+          					<i class="far fa-circle nav-icon"></i>
+          					<p>Ajouter</p>
+          				</a>
+          			</li>
+          			<li class="nav-item">
+          				<a href="{{ path('admin_annonces_index') }}" class="nav-link">
+          					<i class="far fa-circle nav-icon"></i>
+          					<p>Liste</p>
+          				</a>
+          			</li>
+
+          			<li class="nav-item has-treeview">
+          				<a href="#" class="nav-link">
+          					<i class="far fa-tag nav-icon"></i>
+          					<p>
+          						Catégories
+          						<i class="right fas fa-angle-left"></i>
+          					</p>
+          				</a>
+          				<ul class="nav nav-treeview">
+          					<li class="nav-item">
+          						<a href="{{ path('admin_categorie_annonce_new') }}" class="nav-link">
+          							<i class="far fa-dot-circle nav-icon"></i>
+          							<p>Ajouter</p>
+          						</a>
+          					</li>
+          					<li class="nav-item">
+          						<a href="{{ path('admin_categorie_annonce_index') }}" class="nav-link">
+          							<i class="far fa-dot-circle nav-icon"></i>
+          							<p>Liste</p>
+          						</a>
+          					</li>
+          				</ul>
+          			</li>
+          		</ul>
+          	</li>
+          	<!--/ Annonce -->
+
+          	<li class="nav-item has-treeview">
+          		<a href="#" class="nav-link">
+          			<i class="nav-icon fas fa-map"></i>
+          			<p>
+          				Villes
+          				<i class="fas fa-angle-left right"></i>
+          			</p>
+          		</a>
+          		<ul class="nav nav-treeview">
+          			<li class="nav-item">
+          				<a href="{{ path('admin_ville_new') }}" class="nav-link">
+          					<i class="far fa-circle nav-icon"></i>
+          					<p>Ajouter</p>
+          				</a>
+          			</li>
+          			<li class="nav-item">
+          				<a href="{{ path('admin_ville_index') }}" class="nav-link">
+          					<i class="far fa-circle nav-icon"></i>
+          					<p>Liste</p>
+          				</a>
+          			</li>
+          		</ul>
+          	</li>
+
+          	<li class="nav-item has-treeview">
+          		<a href="#" class="nav-link">
+          			<i class="nav-icon fas fa-users"></i>
+          			<p>
+          				Comptes utilisateurs
+          				<i class="fas fa-angle-left right"></i>
+          			</p>
+          		</a>
+          		<ul class="nav nav-treeview">
+          			<li class="nav-item">
+          				<a href="{{ path('admin_user_new') }}" class="nav-link">
+          					<i class="far fa-circle nav-icon"></i>
+          					<p>Ajouter</p>
+          				</a>
+          			</li>
+          			<li class="nav-item">
+          				<a href="{{ path('admin_user_index') }}" class="nav-link">
+          					<i class="far fa-circle nav-icon"></i>
+          					<p>Liste</p>
+          				</a>
+          			</li>
+          		</ul>
+          	</li>
+
+          	<li class="nav-header">MESSAGERIE</li>
+          	<li class="nav-item">
+          		<a href="{{ path('admin_contacts_index') }}" class="nav-link">
+          			<i class="fas fa-envelope nav-icon"></i>
+          			<p>
+          				Boite de reception 
+
+          				{% if messagesNonLu()|length >= 1 %}
+
+							<span class="badge badge-warning right">{{ messagesNonLu()|length }}</span>
+
+						{% endif %}
+          			</p>
+          		</a>
+          	</li>
+
+          </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>

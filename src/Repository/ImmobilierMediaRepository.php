@@ -19,22 +19,17 @@ class ImmobilierMediaRepository extends ServiceEntityRepository
         parent::__construct($registry, ImmobilierMedia::class);
     }
 
-    // /**
-    //  * @return ImmobilierMedia[] Returns an array of ImmobilierMedia objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+    * @return ImmobilierMedia[] Returns an array of ImmobilierMedia objects
+    */
+    public function findByDateDesc()
     {
         return $this->createQueryBuilder('i')
-            ->andWhere('i.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('i.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('i.created', 'DESC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?ImmobilierMedia

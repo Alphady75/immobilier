@@ -1,0 +1,14 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Ajouter une catégorie d'immobilier{% endblock %}
+
+{% block pagelink %}
+    <li class="breadcrumb-item"><a href="{{ path('admin_user_index') }}">Catégorie d'immobilier</a></li>
+    <li class="breadcrumb-item active">Ajouter une catégorie</li>
+{% endblock %}
+
+{% block body %}
+
+    {{ include('admin/admin_categorie_immobilier/_form.html.twig') }}
+
+{% endblock %}

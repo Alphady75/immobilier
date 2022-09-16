@@ -1,0 +1,128 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Compte utilisateur: {{ user.nom ~ ' ' ~ user.prenom }} {% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-sm-12">
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Compte utilisateur</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+                  </div>
+              </div>
+
+              <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 mx-auto">
+                        <div class="table-responsive">
+                            <h5 class="font-weight-bold pl-2 h3">Informations individuelle</h5>
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <th class="w-50">Nom(s))</th>
+                                        <td><strong>{{ user.nom }}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="w-50">Prénom(s)</th>
+                                        <td>{{ user.prenom }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="w-50">Genre</th>
+                                        <td>{{ user.genre }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="w-50">Image de profil</th>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    {% if app.request.attributes.get('_route') == 'admin_user_new' %}
+
+                                                        {{ include('admin/admin_user/_icone.html.twig') }}
+
+                                                    {% else %}
+
+                                                        {{ include('admin/admin_user/_image.html.twig') }}
+
+                                                    {% endif %}
+
+                                                    {{ user.imageFile }}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="w-50">Cordonnées</th>
+                                        <td>
+                                            <strong>Adresse</strong>
+                                            <p>{{ user.adresse }}</p>
+
+                                            <strong>Téléphone</strong>
+                                            <p>{{ user.telephone }}</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h5 class="font-weight-bold pl-2 h3">Informations du compte</h5>
+
+                            <table class="table table-borderless">
+                                <tbody>
+
+                                    <tr>
+                                        <th class="w-50">Rôle</th>
+                                        <td><strong class="badge badge-warning">{{ user.compte }}</strong></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="w-50">E-mail</th>
+                                        <td><i class="fa ga-envelope"></i> {{ user.email }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="w-50">Mot de passe</th>
+                                        <td><i class="fa fa-key"></i>****</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="w-50">Date de création du compte</th>
+                                        <td>{{ user.created ? user.created|date('d/m/Y') : '' }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="w-50">Date de mise à jour du profil</th>
+                                        <td>{{ user.updated ? user.updated|date('d/m/Y') : '' }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="w-50"></th>
+                                        <td>
+                                            <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-default btn-sm">
+                                                <i class="fa fa-user-edit"></i> Modifier le profil</a>
+
+                                            {{ include('admin/admin_user/_delete_form.html.twig') }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>            
+                    </div>
+                </div>        
+            </div>
+        </div>
+
+
+
+        <h5 class="font-weight-bold pl-2 h3">Publications</h5>
+
+        {{ include('admin/admin_immobiliers/_table.html.twig') }}
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,169 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ immobilier.name }}{% endblock %}
+
+{% block breadcrumb %}
+    <!-- BREADCRUMB -->
+    <div class="bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section__breadcrumb-v1">
+                        <ol class="breadcrumb mb-0 bg-light">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="fa fa-home"></i> </a></li>
+                            <li class="breadcrumb-item"> <a href="{{ path('immobiliers') }}">Immobiliers</a></li>
+                            <li class="breadcrumb-item active"> <span class="text-capitalize"> {{ immobilier.name }}</span>
+                            </li>
+
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END BREADCRUMB -->
+{% endblock %}
+
+{% block body %}
+<div class="clearfix"></div>
+    <!-- SINGLE DETAIL -->
+    <section class="single__Detail">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- TITLE PROPERTY AND PRICE  -->
+                    <div class="single__detail-area pt-0 pb-4">
+                        <div class="row">
+                            <div class="col-md-8 col-lg-8">
+                                <div class="single__detail-area-title">
+                                    <h3 class="text-capitalize">{{ immobilier.name }}</h3>
+                                    <p>
+                                        <i class="fa fa-map-marker"></i> {{ immobilier.ville.name }} - {{ immobilier.reference }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-lg-4">
+                                <div class="single__detail-area-price">
+                                    <h3 class="text-capitalize text-gray">
+                                        {{ immobilier.tarif|number_format(0, ',', ' ') ~ ' ' ~ currency }}
+                                    </h3>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a href="#" class="badge badge-primary p-2 rounded"><i
+                                                    class="fa fa-exchange"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#" class="badge badge-primary p-2 rounded"><i
+                                                    class="fa fa-heart"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#" class="badge badge-primary p-2 rounded"><i
+                                                    class="fa fa-print"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END TITLE PROPERTY AND PRICE  -->
+
+                    <!-- SLIDER IMAGE DETAIL -->
+                    <div class="slider__image__detail-large-two owl-carousel owl-theme">
+                        {% for media in immobilier.immobilierMedia %}
+                        <div class="item">
+                            <div class="slider__image__detail-large-one">
+                                {% if media.mediaName %}
+
+                                <img src="{{ vich_uploader_asset(media) | imagine_filter('large_size') }}" 
+                                    class="img-fluid w100 img-transition" alt="{{ media.name }}">
+
+                                {% endif %}
+                                <div class="description">
+                                    <figure>
+                                        {% if media.mediaName %}
+
+                                        <img src="{{ vich_uploader_asset(media) | imagine_filter('large_size') }}" 
+                                            class="img-fluid" alt="{{ media.name }}">
+
+                                        {% endif %}
+                                    </figure>
+                                    <span class="badge badge-primary text-capitalize mb-2">
+                                        {{ immobilier.categorie.name }}
+                                    </span>
+                                    <div class="price">
+                                        <h5 class="text-capitalize">
+                                            {{ immobilier.tarif|number_format(0, ',', ' ') ~ ' ' ~ currency }}
+                                        </h5>
+                                    </div>
+                                    <h4 class="text-capitalize">{{ immobilier.type }}</h4>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="slider__image__detail-thumb-two owl-carousel owl-theme">
+                        {% for media in immobilier.immobilierMedia %}
+                        <div class="item">
+                            <div class="slider__image__detail-thumb-one">
+                                {% if media.mediaName %}
+
+                                <img src="{{ vich_uploader_asset(media) | imagine_filter('medium_size') }}" 
+                                    class="img-fluid w100 img-transition" alt="{{ media.name }}">
+
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- END SLIDER IMAGE DETAIL -->
+                </div>
+                <div class="col-lg-5 pt-5">
+
+                    <div class="sticky-top">
+                        <!-- PROFILE AGENT -->
+                        {{ include('immobiliers/composants/_contact_form.html.twig') }}
+                        <!-- END PROFILE AGENT -->
+                        <div class="download mb-0">
+                            <h5 class="text-center text-capitalize">Property Attachments</h5>
+                            <div class="download__item">
+                                <a href="#" target="_blank"><i class="fa fa-file-pdf-o mr-3"
+                                        aria-hidden="true"></i>Download Document.Pdf</a>
+                            </div>
+                            <div class="download__item">
+                                <a href="#" target="_blank"><i class="fa fa-file-word-o mr-3"
+                                        aria-hidden="true"></i>Presentation
+                                    2016-17.Doc</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <!-- DESCRIPTION -->
+                    {% include('immobiliers/composants/_details.html.twig') %}
+                    <!-- END DESCRIPTION -->
+                </div>
+            </div>
+
+            <!-- SIMILIAR PROPERTY -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="similiar__item">
+                        <h6 class="text-capitalize detail-heading">
+                            Biens immobiliers similaires
+                        </h6>
+                        {{ include('immobiliers/composants/_similaire.html.twig') }}
+                    </div>
+                </div>
+            </div>
+            <!-- END SIMILIAR PROPERTY -->
+
+        </div>
+    </section>
+    <!-- END SINGLE DETAIL -->
+{% endblock %}
+

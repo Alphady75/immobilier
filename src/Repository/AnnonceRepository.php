@@ -19,6 +19,70 @@ class AnnonceRepository extends ServiceEntityRepository
         parent::__construct($registry, Annonce::class);
     }
 
+    /**
+    * @return Annonce[] Returns an array of Annonce objects
+    */
+    public function findLastest()
+    {
+        return $this->createQueryBuilder('a')
+            ->select('c', 'a')
+            ->join('a.categorie', 'c')
+            ->setMaxResults(3)
+            ->andWhere('a.online = 1')
+            ->orderBy('a.created', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+    * @return Annonce[] Returns an array of Annonce objects
+    */
+    public function findByCategories($categorie)
+    {
+        return $this->createQueryBuilder('a')
+            ->select('c', 'a')
+            ->join('a.categorie', 'c')
+            ->andWhere('a.categorie = :categorie')
+            ->andWhere('a.online = 1')
+            ->setParameters([
+                'categorie' => $categorie
+            ])
+            ->orderBy('a.created', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+    * @return Annonce[] Returns an array of Annonce objects
+    */
+    public function findByDateDesc()
+    {
+        return $this->createQueryBuilder('a')
+            ->select('c', 'a')
+            ->join('a.categorie', 'c')
+            ->orderBy('a.created', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+    * @return Annonce[] Returns an array of Annonce objects
+    */
+    public function findOnlineByDateDesc()
+    {
+        return $this->createQueryBuilder('a')
+            ->select('c', 'a')
+            ->join('a.categorie', 'c')
+            ->andWhere('a.online = 1')
+            ->orderBy('a.created', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Annonce[] Returns an array of Annonce objects
     //  */

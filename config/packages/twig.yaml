@@ -6,8 +6,8 @@ twig:
         app_environement: '%env(APP_ENV)%'
         appName: 'IMMO SECURE'
         pays: 'République du Congo'
-        appEmail: 'contact@intellia.club'
-        appPhone: '04 65 27 06 06'
+        appEmail: 'immosercure@gmail.com'
+        appPhone: '(123)456-7890'
         currency: ' €'
         ashtag: '#'
         appConcepteur: "HL Conception"

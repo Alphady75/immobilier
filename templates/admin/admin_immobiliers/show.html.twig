@@ -1,0 +1,307 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Immobilier {{ immobilier.name }}{% endblock %}
+
+{% block pagelink %}
+<li class="breadcrumb-item"><a href="{{ path('admin_immobiliers_index') }}">Biens immobiliers</a></li>
+<li class="breadcrumb-item active">{{ immobilier.name|u.truncate(30, '...') }}</li>
+{% endblock %}
+
+{% block body %}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Bien immobilier: {{ immobilier.name }}</h3>
+
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+      </div>
+  </div>
+
+  <div class="card-body">
+
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h5 class="font-weight-bold pl-2 h3">Informations de base</h5>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <th class="w-25">Intitulé</th>
+                        <td>{{ immobilier.name }}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Image à la une</th>
+                        <td>
+                            <div class="row">
+                                <div class="col-md-7">
+
+                                    {{ include('admin/admin_immobiliers/_image.html.twig') }}
+                                    
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Tarif</th>
+                        <td>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="font-weight-bold">{{ immobilier.tarif|number_format(0, ',', ' ') ~ ' ' ~ currency }}</h4>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h5 class="font-weight-bold pl-2 h3">Détails</h5>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <th class="w-25">Surfaces</th>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong>Minimale</strong><br>
+                                    {{ immobilier.surfaceMin }} m<sup>2</sup>
+                                </div>
+                                <div class="col-sm-6">
+                                    <strong>Maximale</strong><br>
+                                    {{ immobilier.surfaceMax }} m<sup>2</sup>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Classement</th>
+                        <td>
+                            <div class="row mb-3">
+                                <div class="col-sm-6">
+                                    <strong>Type</strong> <br>
+                                    <span class="badge badge-light">{{ immobilier.type }}</span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <strong>Catégorie</strong> <br>
+                                    <span class="badge badge-{{ immobilier.categorie ? 'success' : 'light' }}">
+                                    {{ immobilier.categorie.name ?? 'Non classé' }}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong>Statut</strong> <br>
+                                    <span class="badge badge-light">{{ immobilier.statut }}</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Description</th>
+                        <td>{{ immobilier.description|raw }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h5 class="font-weight-bold pl-2 h3">Localisation / Coordonnées</h5>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <th class="w-25">Ville</th>
+                        <td>{{ immobilier.ville }}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Référence</th>
+                        <td>
+                            {{ immobilier.reference }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h5 class="font-weight-bold pl-2 h3">Informations supplémentaires</h5>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <th class="w-25">Options</th>
+                        <td>
+                            <div class="row mb-3">
+                                {% if immobilier.climatisation %}
+                                <div class="col-sm-4 pb-3">
+                                    <i class="fa fa-server text-success"></i> <strong>Climatisation</strong>
+                                </div>
+                                {% endif %}
+
+                                {% if immobilier.piscine %}
+                                <div class="col-sm-4 pb-3">
+                                    <i class="fa fa-swimmer text-success"></i> <strong>Piscine</strong>
+                                </div>
+                                {% endif %}
+
+                                {% if immobilier.chauffageCentral %}
+                                <div class="col-sm-4 pb-3">
+                                    <i class="fa fa-charging-station text-success"></i> <strong>Chauffage central</strong>
+                                </div>
+                                {% endif %}
+
+                                {% if immobilier.spaMassages %}
+                                <div class="col-sm-4 pb-3">
+                                    <i class="fa fa-procedures text-success"></i> <strong>Spa massages</strong>
+                                </div>
+                                {% endif %}
+
+                                {% if immobilier.gym %}
+                                <div class="col-sm-4 pb-3">
+                                    <i class="fa fa-people-carry text-success"></i> <strong>Gym</strong>
+                                </div>
+                                {% endif %}
+
+                                {% if immobilier.alarme %}
+                                <div class="col-sm-4 pb-3">
+                                    <i class="fa fa-podcast text-success"></i> <strong>Alarme</strong>
+                                </div>
+                                {% endif %}
+
+                                {% if immobilier.wifi %}
+                                <div class="col-sm-4 pb-3">
+                                    <i class="fa fa-wifi text-success"></i> <strong>Wifi</strong>
+                                </div>
+                                {% endif %}
+
+                                {% if immobilier.chambres %}
+                                <div class="col-sm-4 pb-3">
+                                    <strong><i class="fa fa-bed text-success"></i> Chambres</strong><br>
+                                    ({{ immobilier.chambres }})
+                                </div>
+                                {% endif %}
+
+                                {% if immobilier.salleBain %}
+                                <div class="col-sm-4 pb-3">
+                                    <strong><i class="fa fa-bath text-success"></i> Salle de bain</strong><br>
+                                    ({{ immobilier.salleBain }})
+                                </div>
+                                {% endif %}
+                                
+                            </div>
+
+                            <div class="row mt-3">
+                                {% if immobilier.parking >= 1 %}
+                                <div class="col-sm-4 pb-3">
+                                    <i class="fa fa-car-side text-success"></i> <strong>Parking</strong>
+                                </div>
+                                {% endif %}
+
+                                {% if immobilier.garage >= 1 %}
+                                <div class="col-sm-4 pb-3">
+                                    <strong><i class="fa fa-warehouse text-success"></i> Garage</strong><br>
+                                    ({{ immobilier.garage }})
+                                </div>
+                                {% endif %}
+
+                                {% if immobilier.tailleGarage >= 1 %}                                
+                                <div class="col-sm-4 pb-3">
+                                    <strong><i class="fa fa-car text-success"></i> Taille garage</strong><br>
+                                    ({{ immobilier.tailleGarage }})
+                                </div>
+                                {% endif %}
+
+                                <div class="col-sm-12 pb-3">
+                                    <strong>Année de construction</strong><br>
+                                    <i class="fa fa-calendar-alt"></i> {{ immobilier.anneeConstrunction|date('Y') }}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <th class="w-25">Visibilité</th>
+                        <td>
+                            <span class="badge badge-{{ immobilier.online ? 'success' : 'secondary' }}">
+                                {{ immobilier.online ? 'En ligne' : 'Hors ligne' }}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Date de création</th>
+                        <td>{{ immobilier.created ? immobilier.created|date('d/m/Y') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date de mise à jour</th>
+                        <td>
+                            {{ immobilier.updated ? immobilier.updated|date('d/m/Y') : '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="w-25"></th>
+                        <td>
+                            <div class="pt-4">
+                                <a href="{{ path('admin_immobiliers_edit', {'id': immobilier.id}) }}" class="btn btn-default btn-sm">
+                                    <i class="fa fa-edit"></i> Modifier
+                                </a>
+
+                                {{ include('admin/admin_immobiliers/_delete_form.html.twig') }}
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-4">
+
+            {{ include('admin/admin_immobiliers/_gallerie.html.twig') }}
+
+            <h5 class="font-weight-bold pl-2 h3 mb-4 mt-4">Ajouter des images</h5>
+
+            {{ include('admin/admin_immobilier_media/_form.html.twig') }}
+        </div>
+    </div>
+</div>
+
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+<!-- jQuery -->
+<script src="{{ asset('themes/admin/plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap -->
+<script src="{{ asset('themes/admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- jQuery UI -->
+<script src="{{ asset('themes/admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+<!-- Ekko Lightbox -->
+<script src="{{ asset('themes/admin/plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('themes/admin/js/adminlte.min.js') }}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ asset('themes/admin/js/demo.js') }}"></script>
+<!-- Filterizr-->
+<script src="{{ asset('themes/admin/plugins/filterizr/jquery.filterizr.min.js') }}"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox({
+        alwaysShowClose: true
+    });
+  });
+
+    $('.filter-container').filterizr({gutterPixels: 3});
+    $('.btn[data-filter]').on('click', function() {
+      $('.btn[data-filter]').removeClass('active');
+      $(this).addClass('active');
+  });
+})
+</script>
+
+<script>
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function() {
+          var fileName = $(this).val().split("\\").pop();
+          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+        </script>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% if user.avatar %}
+
+<img src="{{ vich_uploader_asset(user) | imagine_filter('identite_size') }}" class="img-fluid d-block mb-4">
+
+{% else %}
+
+{{ include('admin/admin_user/_icone.html.twig') }}
+
+{% endif %}

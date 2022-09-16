@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-white">
+      <div class="inner">
+        <h3>{{ immobiliers|length }}</h3>
+
+        <p>Biens Immobiliers</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-home"></i>
+      </div>
+      <a href="{{ path('admin_immobiliers_index') }}" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-white">
+      <div class="inner">
+        <h3>{{ annonces|length }}</h3>
+
+        <p>Annonces</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-tags"></i>
+      </div>
+      <a href="{{ path('admin_annonces_index') }}" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-white">
+      <div class="inner">
+        <h3>{{ villes|length }}</h3>
+
+        <p>Villes</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-map"></i>
+      </div>
+      <a href="{{ path('admin_ville_index') }}" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-white">
+      <div class="inner">
+        <h3>{{ totalUsers|length }}</h3>
+
+        <p>Utilisateurs</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-users"></i>
+      </div>
+      <a href="{{ path('admin_user_index') }}" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+</div>

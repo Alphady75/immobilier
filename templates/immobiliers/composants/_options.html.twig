@@ -1,0 +1,26 @@
+{% if immobilier.salleBain >= 1 %}
+<li class="list-inline-item">
+	Salle de bain
+	<span>
+		<i class="fa fa-bath"></i> {{ immobilier.salleBain }}
+	</span>
+</li>
+{% endif %}
+
+{% if immobilier.chambres >= 1 %}
+<li class="list-inline-item">
+	Chambres
+	<span>
+		<i class="fa fa-bed"></i> {{ immobilier.chambres }}
+	</span>
+</li>
+{% endif %}
+
+{% if immobilier.surfaceMax %}
+<li class="list-inline-item">
+	Area
+	<span>
+		<i class="fa fa-map"></i> {{ immobilier.surfaceMax }} m<sup>2</sup>
+	</span>
+</li>
+{% endif %}

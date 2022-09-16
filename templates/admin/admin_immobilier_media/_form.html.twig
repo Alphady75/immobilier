@@ -1,0 +1,60 @@
+{{ form_start(form) }}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Média</h3>
+
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+      </div>
+  </div>
+    <div class="card-body">
+        <table class="table table-borderless">
+            <tbody>
+                <tr>
+                    <th>Intitulé</th>
+                    <td>
+                        <div class="row">
+                            <div class="col-sm-{{ app.request.attributes.get('_route') == 'admin_immobilier_media_edit' ? 8 : 12 }}">
+                                {{ form_row(form.name) }}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Fichier</th>
+                    <td>
+                        <div class="row">
+                            <div class="col-sm-{{ app.request.attributes.get('_route') == 'admin_immobilier_media_edit' ? 8 : 12 }}">
+                                {% if app.request.attributes.get('_route') == 'admin_immobilier_media_edit' %}
+
+                                    {% if media.mediaName %}
+
+                                    <img src="{{ vich_uploader_asset(media) | imagine_filter('medium_size') }}" class="img-fluid mt-3 mb-3" 
+                                        alt="{{ media.name }}">
+
+                                    {% else %}
+
+                                    {{ include('admin/admin_immobiliers/_icone.html.twig') }}
+
+                                    {% endif %}
+
+                                {% endif %}
+
+                                {{ form_rest(form) }}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>        
+    </div>
+</div>
+{{ form_end(form) }}

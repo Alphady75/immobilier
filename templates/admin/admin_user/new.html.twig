@@ -1,0 +1,14 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Ajouter un utilisateur{% endblock %}
+
+{% block pagelink %}
+    <li class="breadcrumb-item"><a href="{{ path('admin_user_index') }}">Utilisateurs</a></li>
+    <li class="breadcrumb-item active">Ajouter un utilisateur</li>
+{% endblock %}
+
+{% block body %}
+
+{{ include('admin/admin_user/_form.html.twig') }}
+
+{% endblock %}

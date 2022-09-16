@@ -1,0 +1,73 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Immobiliers Médias{% endblock %}
+
+{% block pagelink %}
+    <li class="breadcrumb-item"><a href="{{ path('admin_immobilier_media_index') }}">Immobilier média</a></li>
+{% endblock %}
+
+{% block body %}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Médias ({{ immobilier_media.getTotalItemCount }})</h3>
+
+        <div class="card-tools">
+            <a href="{{ path('admin_immobilier_media_new') }}" class="btn btn-primary">Ajouter</a>
+        </div>
+    </div>
+    <div class="card-body table-responsive p-0">
+
+    <table class="table table-striped projects">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Intitulé</th>
+                <th>Media</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for media in immobilier_media %}
+            <tr>
+                <td>{{ media.id }}</td>
+                <td>{{ media.name }}</td>
+                <td>
+                    {% if media.mediaName %}
+
+                    <img src="{{ vich_uploader_asset(media) | imagine_filter('medium_avatar') }}" class="">
+
+                    {% else %}
+
+                    <div class="small-box bg-white p-2 text-center">
+                        <i class="fa fa-image text-secondary fa-3x"></i>
+                    </div>
+
+                    {% endif %}
+                </td>
+                <td>{{ media.type }}</td>
+                <td>{{ media.created ? media.created|date('d/m/Y') : '' }}</td>
+                <td>
+                    <a href="{{ path('admin_immobilier_media_edit', {'id': media.id}) }}" class="btn btn-secondary btn-sm"><i class="fa fa-edit"></i></a>
+                    
+                    {{ include('admin/admin_immobilier_media/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucun média</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+
+    <div class="card-footer">
+        {{ knp_pagination_render(immobilier_media) }}
+    </div>
+
+</div>
+{% endblock %}

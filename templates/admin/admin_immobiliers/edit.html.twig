@@ -1,0 +1,16 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Modifier un bien: {{ immobilier.name }}{% endblock %}
+
+{% block pagelink %}
+    <li class="breadcrumb-item"><a href="{{ path('admin_immobiliers_index') }}">Biens immobiliers</a></li>
+    <li class="breadcrumb-item active">Modifier un bien: {{ immobilier.name|u.truncate(30, '...') }}</li>
+{% endblock %}
+
+{% block body %}
+
+    {{ include('admin/admin_immobiliers/_form.html.twig', {'button_label': 'Enregistrer les modifications'}) }}
+
+    {{ include('admin/admin_immobiliers/_delete_form.html.twig') }}
+    
+{% endblock %}

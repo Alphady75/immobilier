@@ -1,0 +1,14 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Modification du média {{ media.name }}{% endblock %}
+
+{% block pagelink %}
+    <li class="breadcrumb-item"><a href="{{ path('admin_immobilier_media_index') }}">Modification du média</a></li>
+    <li class="breadcrumb-item active">Modification du média {{ media.name }}</li>
+{% endblock %}
+
+{% block body %}
+
+    {{ include('admin/admin_immobilier_media/_form.html.twig', {'button_label': 'Enregistrer les modifications'}) }}
+
+{% endblock %}

@@ -28,6 +28,9 @@ class CategorieImmobilier
     #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Immobilier::class)]
     private $immobiliers;
 
+    #[ORM\Column(type: 'string', length: 7, nullable: true)]
+    private $hexColor;
+
     public function __construct()
     {
         $this->immobiliers = new ArrayCollection();
@@ -95,5 +98,17 @@ class CategorieImmobilier
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function getHexColor(): ?string
+    {
+        return $this->hexColor;
+    }
+
+    public function setHexColor(?string $hexColor): self
+    {
+        $this->hexColor = $hexColor;
+
+        return $this;
     }
 }

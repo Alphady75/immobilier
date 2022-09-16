@@ -1,0 +1,33 @@
+<div class="table-responsive mailbox-messages">
+	<table class="table table-hover table-striped">
+		<tbody>
+			{% for contact in contacts %}
+			<tr class="text-{{ contact.lu == 1 ? 'secondary' : '' }}">
+				<td>
+					<strong>{{ contact.civilite }}</strong>
+				</td>
+				<td class="mailbox-name">
+					<a href="{{ path('admin_contacts_show', {'id': contact.id}) }}" class="font-weight-bold text-{{ contact.lu == 1 ? 'secondary' : '' }}">
+						{{ contact.nom ~ ' ' ~ contact.prenom }}
+					</a>
+				</td>
+				<td class="mailbox-subject"><b>
+					<strong class="">{{ contact.immobilier.name|u.truncate(20, '...') }}</strong></b> - 
+					<span class="">{{ contact.message|u.truncate(50, '...') }}</span>
+				</td>
+				<td class="mailbox-attachment"></td>
+				<td class="mailbox-date">
+					<i class="fa fa-clock text-secondary small"></i> {{ contact.created|ago }}
+				</td>
+			</tr>
+			{% else %}
+
+			<tr>
+				<td colspan="6">Aucun message</td>
+			</tr>
+
+			{% endfor %}
+		</tbody>
+	</table>
+	<!-- /.table -->
+</div>

@@ -1,0 +1,14 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Ajouter un média{% endblock %}
+
+{% block pagelink %}
+    <li class="breadcrumb-item"><a href="{{ path('admin_immobilier_media_index') }}">Immobiliers média</a></li>
+    <li class="breadcrumb-item active">Ajouter un media</li>
+{% endblock %}
+
+{% block body %}
+
+    {{ include('admin/admin_immobilier_media/_form.html.twig') }}
+
+{% endblock %}

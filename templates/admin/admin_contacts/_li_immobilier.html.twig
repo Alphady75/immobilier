@@ -1,0 +1,27 @@
+{% if contact.immobilier %}
+
+<li>
+	<span class="">
+		{% if contact.immobilier.imageName %}
+
+		<img src="{{ vich_uploader_asset(contact.immobilier) | imagine_filter('large_size') }}" alt="{{ contact.immobilier.name }}" class="img-fluid">
+
+		{% else %}
+
+		{{ include('admin/admin_immobiliers/_icone.html.twig') }}
+
+		{% endif %}
+	</span>
+
+	<div class="bg-white p-2">
+		<a href="{{ path('admin_immobiliers_show', {'id': contact.immobilier.id }) }}" class="mailbox-attachment-name">{{ contact.immobilier.name }}</a>
+		<span class="mailbox-attachment-size clearfix mt-1">
+			<span class="font-weight-bold">{{ contact.immobilier.tarif|number_format(0, ',', ' ') ~ currency }}</span>
+			<a href="#" class="btn btn-default btn-sm float-right">
+				<i class="fas fa-share"></i>
+			</a>
+		</span>
+	</div>
+</li>
+
+{% endif %}

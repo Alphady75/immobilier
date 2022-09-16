@@ -19,6 +19,15 @@ class CategorieImmobilierRepository extends ServiceEntityRepository
         parent::__construct($registry, CategorieImmobilier::class);
     }
 
+    public function findByName()
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.name', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return CategorieImmobilier[] Returns an array of CategorieImmobilier objects
     //  */

@@ -1,0 +1,64 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Catégorie d'annonces{% endblock %}
+
+{% block pagelink %}
+<li class="breadcrumb-item"><a href="{{ path('admin_categorie_annonce_index') }}">Catégorie d'annonces</a></li>
+{% endblock %}
+
+{% block body %}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">categorie ({{ categories|length }})</h3>
+
+        <div class="card-tools">
+            <a href="{{ path('admin_categorie_annonce_new') }}" class="btn btn-primary">Ajouter</a>
+        </div>
+    </div>
+    <div class="card-body table-responsive p-0">
+
+        <table class="table table-striped projects">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Intitulé</th>
+                    <th>Slug</th>
+                    <th>Couleur</th>
+                    <th>Date</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for categorie in categories %}
+                <tr>
+                    <td>{{ categorie.id }}</td>
+                    <td>{{ categorie.name }}</td>
+                    <td>{{ categorie.slug }}</td>
+                    <td>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-striped" role="progressbar"
+                          aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%; background: {{ categorie.hexColor  }}">
+                          <span class="sr-only">100% Complete (success)</span>
+                      </div>
+                  </div>
+              </td>
+              <td>Créer le {{ categorie.created ? categorie.created|date('d/m/Y') : '' }}</td>
+              <td>
+                <a href="{{ path('admin_categorie_annonce_edit', {'id': categorie.id}) }}" class="btn btn-secondary btn-sm">
+                    <i class="fa fa-edit"></i> Modifier
+                </a>
+                {{ include('admin/admin_categorie_annonce/_delete_form.html.twig') }}
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="6">Aucune catégorie</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+{% endblock %}
+

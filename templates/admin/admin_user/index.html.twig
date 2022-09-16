@@ -1,0 +1,13 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Utilisateurs{% endblock %}
+
+{% block pagelink %}
+    <li class="breadcrumb-item"><a href="{{ path('admin_user_index') }}">Compte utilisateurs</a></li>
+{% endblock %}
+
+{% block body %}
+
+    {{ include('admin/admin_user/_table.html.twig') }}
+
+{% endblock %}

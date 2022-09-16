@@ -1,0 +1,6 @@
+<form method="post" class="d-inline" action="{{ path('admin_contacts_delete', {'id': contact.id}) }}" onsubmit="return confirm('Voulez-vous supprimer ce message?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ contact.id) }}">
+    <button class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Supprimer">
+        <i class="fa fa-trash-alt"></i> Supprimer
+    </button>
+</form>

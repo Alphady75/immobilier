@@ -1,0 +1,42 @@
+{{ form_start(form) }}
+<div class="card card-default">
+    <div class="card-header">
+        <h3 class="card-title">Catégorie d'immobiler</h3>
+
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-borderless">
+            <tbody>
+                <tr>
+                    <th>Titre</th>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-7">
+                                {{ form_row(form.name) }}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Couleur</th>
+                    <td>
+                        <div class="row">
+                            <div class="col-3">
+                                {{ form_row(form.hexColor) }}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td><button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button></td>
+                </tr>
+            </tbody>
+        </table> 
+    </div>
+</div>   
+{{ form_end(form) }}

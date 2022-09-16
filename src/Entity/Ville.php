@@ -6,10 +6,18 @@ use App\Repository\VilleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use App\Entity\Traits\Timestamp;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: VilleRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+/**
+ * @Vich\Uploadable
+ */
 class Ville
 {
     use Timestamp;
@@ -24,6 +32,9 @@ class Ville
 
     #[ORM\Column(type: 'string', length: 100)]
     private $slug;
+
+    #[ORM\Column(type: 'string', length: 7, nullable: true)]
+    private $hexColor;
 
     /**
      * @Vich\UploadableField(mapping="villes_images", fileNameProperty="imageName")
@@ -115,11 +126,6 @@ class Ville
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->name;
-    }
-
     /**
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
      */
@@ -137,5 +143,22 @@ class Ville
     public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    public function getHexColor(): ?string
+    {
+        return $this->hexColor;
+    }
+
+    public function setHexColor(?string $hexColor): self
+    {
+        $this->hexColor = $hexColor;
+
+        return $this;
     }
 }

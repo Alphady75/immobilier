@@ -1,0 +1,39 @@
+<a href="{{ path('admin_contacts_index') }}" class="btn btn-primary btn-lg btn-block mb-3 h4">Méssagerie</a>
+
+<div class="card">
+	<div class="card-header">
+		<h3 class="card-title">Dossiers</h3>
+
+		<div class="card-tools">
+			<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+			</button>
+		</div>
+	</div>
+	<div class="card-body p-0">
+		<ul class="nav nav-pills flex-column">
+			<li class="nav-item active">
+				<a href="{{ path('admin_contacts_index') }}" class="nav-link">
+					<i class="fas fa-inbox"></i> Boite de reception
+					
+					<span class="small badge bg-{{ messagesNonLu()|length >= 1 ? 'primary' : 'white' }} float-right">
+
+						{% if messagesNonLu()|length == 1 %}
+
+							1 Message non lu
+
+						{% elseif messagesNonLu()|length > 1 %}
+
+							{{ messagesNonLu()|length }} Messages non lu
+
+						{% else %}
+
+						{% endif %}
+
+					</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!-- /.card-body -->
+</div>
+<!-- /.card -->

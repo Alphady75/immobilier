@@ -1,0 +1,76 @@
+<div class="sticky-top">
+	<!--<aside>
+		<div class="widget__sidebar mt-0">
+			<div class="widget__sidebar__header">
+				<h6 class="text-capitalize">search</h6>
+			</div>
+			<div class="widget__sidebar__body">
+				<div class="input-group">
+					<input type="text" name="search_term_string" class="form-control"
+					placeholder="Search article . . .">
+					<span class="input-group-btn">
+						<button type="submit" class="btn-search btn"><i
+							class="fa fa-search"></i></button>
+						</span>
+					</div>
+				</div>
+
+			</div>
+		</aside>-->
+		<aside>
+			<div class="widget__sidebar mt-0">
+				<div class="widget__sidebar__header">
+					<h6 class="text-capitalize">Catégorie</h6>
+				</div>
+				<div class="widget__sidebar__body">
+					<ul class="list-unstyled">
+						{% for categorie in categories %}
+						<li>
+							<a href="{{ path('annonces_categorie', {categorieslug: categorie.slug}) }}" class="text-capitalize">
+								{{ categorie.name }}
+								<span class="badge badge-primary">{{ categorie.annonces|length }}</span>
+							</a>
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+
+			</div>
+		</aside>
+		<aside>
+			<div class="widget__sidebar">
+				<div class="widget__sidebar__header">
+					<h6 class="text-capitalize">recents news</h6>
+				</div>
+				<div class="widget__sidebar__body">
+					<!-- TWO -->
+					{% for annonce in latestAnnonces() %}
+					<div class="widget__sidebar__body-img">
+						{% if annonce.imageName %}
+
+							<img src="{{ vich_uploader_asset(annonce) | imagine_filter('large_avatar') }}" 
+								class="img-fluid" alt="{{ annonce.name }}">
+						{% else %}
+
+							<img src="{{ asset('themes/front/images/gal/1.jpg') | imagine_filter('large_avatar') }}" 
+								class="img-fluid" alt="{{ annonce.name }}">
+
+						{% endif %}
+
+						<div class="widget__sidebar__body-heading">
+							<a href="{{ path('annonces_details', {slug: annonce.slug}) }}">
+							<h6 class="text-capitalize">
+								{{ annonce.name }}
+							</h6>
+							</a>
+						</div>
+						<span class="badge badge-secondary p-1 text-capitalize mb-1">
+							{{ annonce.created|date('d/m/Y') }}
+						</span>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</aside>
+
+	</div>

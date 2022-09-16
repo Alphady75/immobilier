@@ -1,0 +1,57 @@
+<div class="card__image card__box-v1">
+	<div class="card__image-header h-250">
+		<div class="ribbon text-capitalize">{{ immobilier.categorie.name }}</div>
+		{% if immobilier.imageName %}
+
+		<img src="{{ vich_uploader_asset(immobilier) | imagine_filter('medium_size') }}" 
+			class="img-fluid w100 img-transition" alt="{{ immobilier.name }}">
+
+		{% else %}
+
+		<img src="{{ asset('themes/front/images/gal/3.jpg') }}" class="img-fluid w100 img-transition" alt="{{ immobilier.name }}">
+
+		{% endif %}
+
+		<div class="info">
+			{{ include('immobiliers/composants/_statut.html.twig') }}
+		</div>
+	</div>
+	<div class="card__image-body">
+		<span class="badge badge-primary text-capitalize mb-2">
+			{{ immobilier.type }}
+		</span>
+
+		<h6 class="text-capitalize">
+			<a href="{{ path('immobiliers_details', {slug: immobilier.slug}) }}">{{ immobilier.name }}</a>
+		</h6>
+
+		<p class="text-capitalize">
+			<i class="fa fa-map-marker"></i>
+			{{ immobilier.ville.name }} - {{ immobilier.reference }}
+		</p>
+		<!--<ul class="list-inline card__content">
+			{% include('immobiliers/composants/_options.html.twig') %}
+		</ul>-->
+	</div>
+	<div class="card__image-footer">
+		<figure>
+			<img src="{{ asset('img/user.jpg') }}" alt="" class="img-fluid rounded-circle">
+		</figure>
+		<ul class="list-inline my-auto">
+			<li class="list-inline-item">
+				<a href="{{ path('immobiliers_details', {slug: immobilier.id}) }}">
+					{{ immobilier.user.nom }} {{ immobilier.user.prenom }}
+				</a>
+
+			</li>
+
+		</ul>
+		<ul class="list-inline my-auto ml-auto">
+			<li class="list-inline-item">
+
+				<h6>{{ immobilier.tarif|number_format(0, ',', ' ') ~ ' ' ~ currency }}</h6>
+			</li>
+
+		</ul>
+	</div>
+</div>

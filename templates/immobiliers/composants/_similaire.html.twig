@@ -1,0 +1,74 @@
+<div class="similiar__property-carousel owl-carousel owl-theme">
+	{% for similaire in immobiliersSimilaires %}
+
+		{% if similaire.id == immobilier.id %}
+
+		{% else %}
+		<div class="item">
+			<!-- ONE -->
+			<a href="{{ path('immobiliers_details', {slug: similaire.slug}) }}">
+				<div class="card__image-hover h-250">
+					<div class="card__image-hover-overlay">
+						<div class="listing-badges">
+							<span class="featured">
+								{{ similaire.categorie.name }}
+							</span>
+							<span>
+								{% if similaire.statut == 'a-vendre' %}
+									A vendre
+								{% else %}
+									A louer
+								{% endif %}
+							</span>
+						</div>
+						<div class="card__image-content">
+							<div class="card__image-content-desc">
+								<h6> {{ similaire.name }}</h6>
+								<p class="mb-0"> {{ similaire.tarif|number_format(0, ',', ' ') ~ ' ' ~ currency }}</p>
+							</div>
+							<ul class="list-inline card__hidden-content">
+								<li class="list-inline-item">
+									Baths
+									<span>
+										<i class="fa fa-bath"></i> 2
+									</span>
+								</li>
+								<li class="list-inline-item">
+									Beds
+									<span>
+										<i class="fa fa-bed"></i> 2
+									</span>
+								</li>
+								<li class="list-inline-item">
+									Rooms
+									<span>
+										<i class="fa fa-inbox"></i> 3
+									</span>
+								</li>
+								<li class="list-inline-item">
+									Area
+									<span>
+										<i class="fa fa-map"></i> 1450 sq ft
+									</span>
+								</li>
+
+							</ul>
+						</div>
+						{% if similaire.imageName %}
+
+						<img src="{{ vich_uploader_asset(similaire) | imagine_filter('medium_size') }}" 
+						class="img-fluid h-40" alt="{{ similaire.name }}">
+
+						{% else %}
+
+						<img src="{{ asset('themes/front/images/gal/4.jpg') }}" class="img-fluid h-40">
+
+						{% endif %}
+					</div>
+				</div>
+			</a>
+		</div>
+		{% endif %}
+	
+	{% endfor %}
+</div>

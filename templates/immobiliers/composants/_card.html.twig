@@ -1,0 +1,33 @@
+<a href="{{ path('immobiliers_details', {slug: immobilier.slug}) }}">
+	<div class="card__image-hover h-250">
+		<div class="card__image-hover-overlay">
+			<div class="listing-badges">
+				<span class="featured">
+					{{ immobilier.categorie.name }}
+				</span>
+				<span>
+					{{ include('immobiliers/composants/_statut.html.twig') }}
+				</span>
+			</div>
+			<div class="card__image-content">
+				<div class="card__image-content-desc">
+					<h6> {{ immobilier.name }}</h6>
+					<p class="mb-0"> {{ immobilier.tarif|number_format(0, ',', ' ') ~ ' ' ~ currency }}</p>
+				</div>
+				<ul class="list-inline card__hidden-content">
+					{% include('immobiliers/composants/_options.html.twig') %}
+				</ul>
+			</div>
+			{% if immobilier.imageName %}
+
+			<img src="{{ vich_uploader_asset(immobilier) | imagine_filter('medium_size') }}" 
+				class="img-fluid h-40" alt="{{ immobilier.name }}">
+
+			{% else %}
+
+			<img src="{{ asset('themes/front/images/gal/4.jpg') }}" class="img-fluid h-40">
+
+			{% endif %}
+		</div>
+	</div>
+</a>

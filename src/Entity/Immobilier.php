@@ -6,10 +6,18 @@ use App\Repository\ImmobilierRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use App\Entity\Traits\Timestamp;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ImmobilierRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+/**
+ * @Vich\Uploadable
+ */
 class Immobilier
 {
     use Timestamp;
@@ -64,18 +72,66 @@ class Immobilier
     private $online;
 
     #[ORM\ManyToOne(targetEntity: Ville::class, inversedBy: 'immobiliers')]
+    #[ORM\JoinColumn(nullable: true)]
     private $ville;
 
     #[ORM\OneToMany(mappedBy: 'immobilier', targetEntity: ImmobilierMedia::class)]
+    #[ORM\JoinColumn(nullable: true)]
     private $immobilierMedia;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'immobiliers')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $vendu;
+
+    #[ORM\OneToMany(mappedBy: 'immobilier', targetEntity: Contact::class)]
+    private $contacts;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $climatisation;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $piscine;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $chauffageCentral;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $spaMassages;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $gym;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $alarme;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $wifi;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $parking;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $chambres;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $salleBain;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $garage;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $tailleGarage;
+
+    #[ORM\Column(type: 'date', nullable: true)]
+    private $anneeConstrunction;
+
     public function __construct()
     {
         $this->immobilierMedia = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -298,5 +354,207 @@ class Immobilier
     public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+    public function __toString(){
+        return $this->name;
+    }
+
+    public function getVendu(): ?bool
+    {
+        return $this->vendu;
+    }
+
+    public function setVendu(?bool $vendu): self
+    {
+        $this->vendu = $vendu;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contact[]
+     */
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts[] = $contact;
+            $contact->setImmobilier($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        if ($this->contacts->removeElement($contact)) {
+            // set the owning side to null (unless already changed)
+            if ($contact->getImmobilier() === $this) {
+                $contact->setImmobilier(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getClimatisation(): ?bool
+    {
+        return $this->climatisation;
+    }
+
+    public function setClimatisation(?bool $climatisation): self
+    {
+        $this->climatisation = $climatisation;
+
+        return $this;
+    }
+
+    public function getPiscine(): ?bool
+    {
+        return $this->piscine;
+    }
+
+    public function setPiscine(?bool $piscine): self
+    {
+        $this->piscine = $piscine;
+
+        return $this;
+    }
+
+    public function getChauffageCentral(): ?bool
+    {
+        return $this->chauffageCentral;
+    }
+
+    public function setChauffageCentral(?bool $chauffageCentral): self
+    {
+        $this->chauffageCentral = $chauffageCentral;
+
+        return $this;
+    }
+
+    public function getSpaMassages(): ?bool
+    {
+        return $this->spaMassages;
+    }
+
+    public function setSpaMassages(?bool $spaMassages): self
+    {
+        $this->spaMassages = $spaMassages;
+
+        return $this;
+    }
+
+    public function getGym(): ?bool
+    {
+        return $this->gym;
+    }
+
+    public function setGym(?bool $gym): self
+    {
+        $this->gym = $gym;
+
+        return $this;
+    }
+
+    public function getAlarme(): ?bool
+    {
+        return $this->alarme;
+    }
+
+    public function setAlarme(?bool $alarme): self
+    {
+        $this->alarme = $alarme;
+
+        return $this;
+    }
+
+    public function getWifi(): ?bool
+    {
+        return $this->wifi;
+    }
+
+    public function setWifi(?bool $wifi): self
+    {
+        $this->wifi = $wifi;
+
+        return $this;
+    }
+
+    public function getParking(): ?bool
+    {
+        return $this->parking;
+    }
+
+    public function setParking(?bool $parking): self
+    {
+        $this->parking = $parking;
+
+        return $this;
+    }
+
+    public function getChambres(): ?int
+    {
+        return $this->chambres;
+    }
+
+    public function setChambres(?int $chambres): self
+    {
+        $this->chambres = $chambres;
+
+        return $this;
+    }
+
+    public function getSalleBain(): ?int
+    {
+        return $this->salleBain;
+    }
+
+    public function setSalleBain(?int $salleBain): self
+    {
+        $this->salleBain = $salleBain;
+
+        return $this;
+    }
+
+    public function getGarage(): ?int
+    {
+        return $this->garage;
+    }
+
+    public function setGarage(?int $garage): self
+    {
+        $this->garage = $garage;
+
+        return $this;
+    }
+
+    public function getTailleGarage(): ?int
+    {
+        return $this->tailleGarage;
+    }
+
+    public function setTailleGarage(?int $tailleGarage): self
+    {
+        $this->tailleGarage = $tailleGarage;
+
+        return $this;
+    }
+
+    public function getAnneeConstrunction(): ?\DateTimeInterface
+    {
+        return $this->anneeConstrunction;
+    }
+
+    public function setAnneeConstrunction(?\DateTimeInterface $anneeConstrunction): self
+    {
+        $this->anneeConstrunction = $anneeConstrunction;
+
+        return $this;
     }
 }

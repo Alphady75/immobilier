@@ -1,0 +1,14 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Modification de la catégorie d'annonce: {{ categorie.name }}{% endblock %}
+
+{% block pagelink %}
+    <li class="breadcrumb-item"><a href="{{ path('admin_categorie_annonce_index') }}">Catégorie d'annonces</a></li>
+    <li class="breadcrumb-item active">Modification de la catégorie d'annonce: {{ categorie.name }}</li>
+{% endblock %}
+
+{% block body %}
+
+    {{ include('admin/admin_categorie_annonce/_form.html.twig', {'button_label': 'Enregistrer les modifications'}) }}
+
+{% endblock %}

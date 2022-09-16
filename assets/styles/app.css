@@ -1,3 +1,4 @@
-body {
-    background-color: lightgray;
+.turbo-progress-bar {
+  height: 5px;
+  background-color: #ab911d!important;
 }

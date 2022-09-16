@@ -1,0 +1,20 @@
+{% for type, messages in app.flashes %}
+	{% for message in messages %}
+		<ul class="list-group mb-3 mt-5 border border-{{ type }}">
+            <li class="list-group-item">
+                <h5 class="my-0 text-{{ type }}">
+                	{% if type == 'danger' %}
+						<i class="fa fa-exclamation-triangle"></i> Echec!
+                	{% elseif type == 'warning' %}
+						<i class="fa fa-exclamation-triangle"></i> Attention!
+					{% elseif type =='success' %}
+						<i class="fa fa-check"></i> Félicitation!
+					{% endif %}
+                </h5>
+                <div class="d-flex justify-content-between lh-condensed">
+                    <span class="span text-muted font-weight-light">{{ message }}</span>
+                </div>
+            </li>
+        </ul>
+	{% endfor %}
+{% endfor %}

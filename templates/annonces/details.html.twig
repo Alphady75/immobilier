@@ -1,0 +1,217 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ annonce.name }} {% endblock %}
+
+{% block breadcrumb %}
+<div class="bg-theme-overlay" style="background-image:url('{{ asset('themes/front/images/gal/3.jpg') }}')">
+            <section class="section__breadcrumb ">
+                <div class="container">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-8 text-center">
+                            <h2 class="text-capitalize text-white ">Actualités</h2>
+                            <ul class="list-inline ">
+                                <li class="list-inline-item">
+                                    <a href="{{ path('accueil') }}" class="text-white">
+                                        Accueil
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#" class="text-white">
+                                        Pages
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#" class="text-white">
+                                        {{ annonce.name|u.truncate(50, '...') }}
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+{% endblock %}
+
+
+{% block body %}
+<div class="clearfix"></div>
+<!-- BLOG -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <!-- BLOG START -->
+                <div class="col-lg-8">
+                    
+                    <div class="single__blog-detail">
+                        <h1>
+                            {{ annonce.name }}
+                        </h1>
+
+                        <div class="single__blog-detail-info">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <figure class="image-profile">
+                                        {% if annonce.user.avatar %}
+
+										<img src="{{ vich_uploader_asset(annonce.user) | imagine_filter('medium_avatar') }}" class="img-fluid img-circle">
+
+										{% else %}
+
+										<img src="{{ asset('img/user.jpg') }}" alt="" class="img-fluid rounded-circle">
+
+										{% endif %}
+                                    </figure>
+                                </li>
+                                <li class="list-inline-item">
+
+                                    <span>
+                                        Par
+                                    </span>
+                                    <a href="#">
+                                        {{ annonce.user.nom ~ ' ' ~ annonce.user.prenom }},
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <span class="text-dark text-capitalize ml-1">
+                                        {{ annonce.created|date('d/m/Y') }}
+                                    </span>
+                                </li>
+
+                                <li class="list-inline-item">
+                                    <span class="text-dark text-capitalize ml-1">
+                                        En
+                                    </span>
+                                    <a href="{{ path('annonces_categorie', {categorieslug: annonce.categorie.slug}) }}">
+                                        {{ annonce.categorie.name }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <figure>
+                            <img src="images/gal/4.jpg" class="img-fluid" alt="">
+                        </figure>
+
+                        {{ annonce.description|raw }}
+
+                        <!-- BLOCKQUOTE --
+                        <blockquote class="block-quote">
+                            <p>
+                                It is a long established fact that a reader will be distracted by the readable content
+                                of a page when looking at
+                                its layout.
+                            </p>
+                            <cite>
+                                Tom Cruise
+                            </cite>
+                        </blockquote>
+                        <!-- END BLOCKQUOTE --
+
+                        <p>
+                            Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                            there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the
+                            Semantics, a large language ocean. A small river named Duden flows by their place and
+                            supplies it with the necessary regelialia.
+                        </p>
+
+
+
+                        <!-- TAGS --
+                        <div class="blog__tags mb-4">
+                            <ul class="list-inline">
+
+                                <li class="list-inline-item">
+                                    <a href="#">
+                                        #property
+                                    </a>
+                                </li>
+
+
+                                <li class="list-inline-item">
+                                    <a href="#">
+                                        #real estate
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#">
+                                        #listing
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#">
+                                        #rent
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#">
+                                        #sell
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- END TAGS -->
+
+                        <!-- AUTHOR -->
+                        <!-- Profile author -->
+                        <div class="wrap__profile mt-4">
+                            <div class="wrap__profile-author">
+                                <figure>
+                                	{% if annonce.user.avatar %}
+
+									<img src="{{ vich_uploader_asset(annonce.user) | imagine_filter('medium_avatar') }}" class="img-fluid img-circle">
+
+									{% else %}
+
+									<img src="{{ asset('img/user.jpg') }}" alt="" class="img-fluid rounded-circle">
+
+									{% endif %}
+                                </figure>
+                                <div class="wrap__profile-author-detail">
+                                    <div class="wrap__profile-author-detail-name">auteur</div>
+                                    <h5>{{ annonce.user.nom ~ ' ' ~ annonce.user.prenom }}</h5>
+                                    <p>{{ annonce.user.biographie|raw }}</p>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a href="#" class="btn btn-social btn-social-o facebook ">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#" class="btn btn-social btn-social-o twitter ">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#" class="btn btn-social btn-social-o instagram ">
+                                                <i class="fa fa-instagram"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#" class="btn btn-social btn-social-o telegram ">
+                                                <i class="fa fa-telegram"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#" class="btn btn-social btn-social-o linkedin ">
+                                                <i class="fa fa-linkedin"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END AUTHOR -->
+                    </div>
+
+                </div>
+                <!-- WIDGET BLOG -->
+                <div class="col-lg-4">
+                    {{ include('annonces/composants/_sidebar.html.twig') }}
+                </div>
+                <!-- END WIDGET BLOG -->
+            </div>
+        </div>
+    </section>
+    <!-- END LISTING LIST -->
+{% endblock %}

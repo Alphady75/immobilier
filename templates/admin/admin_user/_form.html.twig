@@ -1,0 +1,102 @@
+{{ form_start(form) }}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Compte utilisateur</h3>
+
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+          </div>
+      </div>
+
+      <div class="card-body">
+        <div class="row">
+            <div class="col-md-7">
+                <h5 class="font-weight-bold pl-2 h3">Informations individuelle</h5>
+
+                <div class="table-responsive">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <th class="w-25">Nom</th>
+                                <td>{{ form_row(form.nom) }}</td>
+                            </tr>
+                            <tr>
+                                <th class="w-25">Prénoms</th>
+                                <td>{{ form_row(form.prenom) }}</td>
+                            </tr>
+                            <tr>
+                                <th class="w-25">Genre</th>
+                                <td>{{ form_row(form.genre) }}</td>
+                            </tr>
+                            <tr>
+                                <th class="w-25">Image de profil</th>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            {% if app.request.attributes.get('_route') == 'admin_user_new' %}
+
+                                                {{ include('admin/admin_user/_icone.html.twig') }}
+
+                                            {% else %}
+
+                                                {{ include('admin/admin_user/_image.html.twig') }}
+
+                                            {% endif %}
+                                            
+                                            {{ form_row(form.imageFile) }}
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="w-25">A propos</th>
+                                <td>
+                                    {{ form_row(form.biographie) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="w-25">Coordonées</th>
+                                <td>
+                                    {{ form_row(form.adresse) }}
+
+                                    {{ form_row(form.telephone) }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h5 class="font-weight-bold pl-2 h3">Compte utilisateur</h5>
+
+                    <table class="table table-borderless">
+                        <tbody>
+
+                            <tr>
+                                <th class="w-25">Role</th>
+                                <td>{{ form_row(form.compte) }}</td>
+                            </tr>
+
+                            <tr>
+                                <th class="w-25">E-mail</th>
+                                <td>{{ form_row(form.email) }}</td>
+                            </tr>
+
+                            <tr>
+                                <th class="w-25">Mot de passe</th>
+                                <td>{{ form_row(form.plainPassword) }}</td>
+                            </tr>
+
+                            <tr>
+                                <th class="w-25"></th>
+                                <td><button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>            
+            </div>
+        </div>        
+    </div>
+</div>
+
+{{ form_end(form) }}

@@ -1,0 +1,9 @@
+{% if annonce.imageName %}
+
+<img src="{{ vich_uploader_asset(annonce) | imagine_filter('medium_size') }}" class="img-fluid d-block mb-4">
+
+{% else %}
+
+{{ include('admin/admin_annonces/_icone.html.twig') }}
+
+{% endif %}

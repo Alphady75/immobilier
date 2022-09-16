@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie: {{ categorie.name }} {% endblock %}
+
+{% block breadcrumb %}
+<div class="bg-theme-overlay" style="background-image:url('{{ asset('themes/front/images/gal/3.jpg') }}')">
+	<section class="section__breadcrumb ">
+		<div class="container">
+			<div class="row d-flex justify-content-center">
+				<div class="col-md-8 text-center">
+					<h2 class="text-capitalize text-white ">Actualités</h2>
+					<ul class="list-inline ">
+						<li class="list-inline-item">
+							<a href="{{ path('accueil') }}" class="text-white">
+								Accueil
+							</a>
+						</li>
+						<li class="list-inline-item">
+							<a href="#" class="text-white">
+								Catégories
+							</a>
+						</li>
+						<li class="list-inline-item">
+							<a href="#" class="text-white">
+								{{ categorie.name }}
+							</a>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="clearfix"></div>
+<!-- BLOG -->
+<section>
+	<div class="container">
+		<div class="row">
+			<!-- BLOG START -->
+			<div class="col-lg-8">
+				<div class="row">
+					{% for annonce in annonces %}
+					<div class="col-md-6 col-lg-6">
+						<div class="blog__grid mt-0 mb-3">
+							<!-- BLOG  -->
+							{{ include('annonces/composants/_card.html.twig') }}
+							<!-- END BLOG -->
+						</div>
+					</div>
+					{% else %}
+					<div class="col-12">
+						<p>Aucune annonce</p>
+					</div>
+					{% endfor %}
+				</div>
+				<div class="row">
+					<div class="col-12">
+						{{ knp_pagination_render(annonces) }}
+					</div>
+				</div>
+				<!-- END BLOG  -->
+			</div>
+			<!-- WIDGET BLOG -->
+			<div class="col-lg-4">
+				{{ include('annonces/composants/_sidebar.html.twig') }}
+			</div>
+			<!-- END WIDGET BLOG -->
+		</div>
+	</div>
+</section>
+<!-- END LISTING LIST -->
+{% endblock %}

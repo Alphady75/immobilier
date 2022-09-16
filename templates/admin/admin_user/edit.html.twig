@@ -1,0 +1,14 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Modifier le compte de: {{ user.nom ~ ' ' ~ user.prenom }} {% endblock %}
+
+{% block pagelink %}
+    <li class="breadcrumb-item"><a href="{{ path('admin_user_index') }}">Utilisateurs</a></li>
+    <li class="breadcrumb-item active">Modifier le compte de: {{ user.nom ~ ' ' ~ user.prenom }}</li>
+{% endblock %}
+
+{% block body %}
+
+    {{ include('admin/admin_user/_form.html.twig', {'button_label': 'Enregistrer les modifications'}) }}
+
+{% endblock %}

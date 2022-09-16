@@ -19,6 +19,18 @@ class CategorieAnnonceRepository extends ServiceEntityRepository
         parent::__construct($registry, CategorieAnnonce::class);
     }
 
+    /**
+    * @return CategorieAnnonce[] Returns an array of CategorieAnnonce objects
+    */
+    public function findByNameAsc()
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return CategorieAnnonce[] Returns an array of CategorieAnnonce objects
     //  */

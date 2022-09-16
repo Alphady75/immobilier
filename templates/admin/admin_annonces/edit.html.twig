@@ -1,0 +1,14 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Modification de l'annonce {{ annonce.name }}{% endblock %}
+
+{% block pagelink %}
+    <li class="breadcrumb-item"><a href="{{ path('admin_immobiliers_index') }}">Annonces</a></li>
+    <li class="breadcrumb-item active">Modification de l'annonce {{ annonce.name|u.truncate(30, '...') }}</li>
+{% endblock %}
+
+{% block body %}
+
+    {{ include('admin/admin_annonces/_form.html.twig', {'button_label': 'Enregistrer les modifications'}) }}
+
+{% endblock %}

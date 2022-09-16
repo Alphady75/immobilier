@@ -1,0 +1,79 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Annonces{% endblock %}
+
+{% block pagelink %}
+    <li class="breadcrumb-item"><a href="{{ path('admin_annonces_index') }}">Annonces</a></li>
+{% endblock %}
+
+{% block body %}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Annonces ({{ annonces.getTotalItemCount }})</h3>
+
+        <div class="card-tools">
+            <a href="{{ path('admin_annonces_new') }}" class="btn btn-primary">Ajouter</a>
+        </div>
+    </div>
+    <div class="card-body table-responsive p-0">
+
+    <table class="table table-striped projects">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Titre</th>
+                <th>Catégorie</th>
+                <th>Statut</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for annonce in annonces %}
+            <tr>
+                <td>{{ annonce.id }}</td>
+                <td>
+                    {% if annonce.imageName %}
+
+                    <img src="{{ vich_uploader_asset(annonce) | imagine_filter('medium_avatar') }}" class="">
+
+                    {% else %}
+
+                    <div class="small-box bg-white p-2 text-center">
+                        <i class="fa fa-image text-secondary fa-3x"></i>
+                    </div>
+
+                    {% endif %}
+                </td>
+                <td>{{ annonce.name|u.truncate(50, '...') }}</td>
+                <td>{{ annonce.categorie.name ?? 'Non classé' }}</td>
+                <td>
+                    <span class="badge badge-{{ annonce.online ? 'success' : 'secondary' }}">
+                        {{ annonce.online ? 'En ligne' : 'Hors ligne' }}
+                    </span>
+                </td>
+                <td>{{ annonce.created ? annonce.created|date('d/m/Y') : '' }}</td>
+                <td>
+                    <a href="{{ path('admin_annonces_edit', {'id': annonce.id}) }}" class="btn btn-secondary btn-sm">
+                        <i class="fa fa-edit"></i> Modifier
+                    </a>
+                    {{ include('admin/admin_annonces/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">Accune annonce</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    <div class="card-footer">
+        {{ knp_pagination_render(annonces) }}
+    </div>
+</div>
+
+{% endblock %}

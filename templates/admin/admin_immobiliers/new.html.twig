@@ -1,0 +1,14 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Ajouter un bien{% endblock %}
+
+{% block pagelink %}
+    <li class="breadcrumb-item"><a href="{{ path('admin_immobiliers_index') }}">Biens immobiliers</a></li>
+    <li class="breadcrumb-item active">Ajouter un bien</li>
+{% endblock %}
+
+{% block body %}
+
+    {{ include('admin/admin_immobiliers/_form.html.twig') }}
+
+{% endblock %}

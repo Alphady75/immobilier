@@ -1,0 +1,14 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Ajouter une annonce{% endblock %}
+
+{% block pagelink %}
+    <li class="breadcrumb-item"><a href="{{ path('admin_annonces_index') }}">Annonces</a></li>
+    <li class="breadcrumb-item active">Ajouter une annonce</li>
+{% endblock %}
+
+{% block body %}
+
+    {{ include('admin/admin_annonces/_form.html.twig') }}
+
+{% endblock %}
