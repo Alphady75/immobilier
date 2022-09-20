@@ -5,7 +5,7 @@ twig:
     globals:
         app_environement: '%env(APP_ENV)%'
         appName: 'IMMO SECURE'
-        pays: 'République du Congo'
+        pays: ''
         appEmail: 'immosercure@gmail.com'
         appPhone: '(123)456-7890'
         currency: ' €'

@@ -81,7 +81,6 @@ class SearchImmobilierType extends AbstractType
             'required' => false,
             'autocomplete' => true,
                 //'expanded' => true,
-            'empty_data' => '',
             'class' => CategorieImmobilier::class,
             'query_builder' => function (CategorieImmobilierRepository $getcategories) {
                 return $getcategories->createQueryBuilder('c')
@@ -97,7 +96,6 @@ class SearchImmobilierType extends AbstractType
             'help' => "Ville",
             'multiple' => true,
                 //'expanded' => true,
-            'empty_data' => '',
             'class' => Ville::class,
             'query_builder' => function (VilleRepository $getville) {
                 return $getville->createQueryBuilder('v')

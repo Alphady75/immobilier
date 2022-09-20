@@ -4,6 +4,7 @@
         "@hotwired/turbo": "^7.0.1",
         "@symfony/stimulus-bridge": "^3.0.0",
         "@symfony/ux-autocomplete": "file:vendor/symfony/ux-autocomplete/assets",
+        "@symfony/ux-dropzone": "file:vendor/symfony/ux-dropzone/Resources/assets",
         "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/Resources/assets",
         "@symfony/webpack-encore": "^1.7.0",
         "core-js": "^3.0.0",

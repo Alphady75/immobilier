@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\UX\Dropzone\Form\DropzoneType;
 
 class ImmobilierMediaType extends AbstractType
 {
@@ -29,7 +30,7 @@ class ImmobilierMediaType extends AbstractType
                 'required' => false,
                 'help' => 'Exemple: chambre à coucher',
             ])
-            ->add('imageFile', FileType::class, [
+            ->add('imageFile', DropzoneType::class, [
                 'label' => false,
                 'help' => 'Format (jpg, jpeg et png)',
                 'constraints' => [

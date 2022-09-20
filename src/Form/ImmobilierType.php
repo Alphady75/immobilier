@@ -24,6 +24,7 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\UX\Dropzone\Form\DropzoneType;
 
 class ImmobilierType extends AbstractType
 {
@@ -40,7 +41,7 @@ class ImmobilierType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('imageFile', FileType::class, [
+            ->add('imageFile', DropzoneType::class, [
                 'label' => false,
                 'help' => 'Format (jpg, jpeg et png)',
                 'required' => false,
@@ -121,7 +122,6 @@ class ImmobilierType extends AbstractType
             ->add('categorie', EntityType::class, [
                 'label' => False,
                 'help' => "Catégorie",
-                'empty_data' => '',
                 'class' => CategorieImmobilier::class,
                 'query_builder' => function (CategorieImmobilierRepository $getcategories) {
                     return $getcategories->createQueryBuilder('c')
@@ -132,7 +132,6 @@ class ImmobilierType extends AbstractType
             ->add('ville', EntityType::class, [
                 'label' => False,
                 'help' => 'Ville de réféerence',
-                'empty_data' => '',
                 'class' => Ville::class,
                 'query_builder' => function (VilleRepository $getville) {
                     return $getville->createQueryBuilder('v')
@@ -194,7 +193,7 @@ class ImmobilierType extends AbstractType
             ])
             ->add('anneeConstrunction', DateType::class, [
                 'label' => false,
-                'help' => 'Année de construction',
+                'help' => 'Facultatif',
                 'widget' => 'single_text',
                 'required' => false,
             ])

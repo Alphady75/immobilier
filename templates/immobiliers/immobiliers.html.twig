@@ -9,8 +9,8 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-md-8 text-center">
                     <h2 class="text-capitalize text-white ">
-                        {{ immobiliers.getTotalItemCount > 1 ? immobiliers.getTotalItemCount : 'Aucun' }} 
-                        Immobilier{{ immobiliers.getTotalItemCount < 1 ? 's' : '' }}</h2>
+                        {{ immobiliers.getTotalItemCount >= 1 ? immobiliers.getTotalItemCount : 'Aucun' }} 
+                        Immobilier{{ immobiliers.getTotalItemCount > 1 ? 's' : '' }}</h2>
                     <ul class="list-inline ">
                         <li class="list-inline-item">
                             <a href="{{ path('accueil') }}" class="text-white">

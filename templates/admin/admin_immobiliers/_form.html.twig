@@ -13,7 +13,7 @@
       <div class="card-body">
 
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-{{ app.request.attributes.get('_route') == 'admin_immobiliers_new' ? 10 : 8 }}">
                 <h5 class="font-weight-bold pl-2 h3">Informations de base</h5>
                 <table class="table table-borderless">
                     <tbody>
@@ -25,7 +25,7 @@
                             <th class="w-25">Image à la une</th>
                             <td>
                                 <div class="row">
-                                    <div class="col-md-7">
+                                    <div class="col-md-6">
 
                                         {% if app.request.attributes.get('_route') == 'admin_immobiliers_edit' %}
 
@@ -37,7 +37,11 @@
 
                                         {% endif %}
 
+                                    </div>
+                                    <div class="col-md-6">
+
                                         {{ form_row(form.imageFile) }}
+                                        
                                     </div>
                                 </div>
                             </td>

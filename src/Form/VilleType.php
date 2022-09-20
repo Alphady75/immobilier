@@ -19,6 +19,7 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
+use Symfony\UX\Dropzone\Form\DropzoneType;
 
 class VilleType extends AbstractType
 {
@@ -35,15 +36,15 @@ class VilleType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('imageFile', VichImageType::class, [
+            ->add('imageFile', DropzoneType::class, [
                 'label' => false,
                 'help' => 'Format (jpg, jpeg et png)',
                 'required'  =>  false,
-                'allow_delete' =>  false,
+                /*'allow_delete' =>  false,
                 'download_label'     =>  false,
                 'image_uri'     =>  false,
                 'download_uri'     =>  false,
-                'imagine_pattern'   =>  'medium_size'
+                'imagine_pattern'   =>  'medium_size'*/
             ])
             ->add('hexColor', ColorType::class, [
                 'help' => "Choisir une couleur pour la représentations graphiques",

@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\UX\Dropzone\Form\DropzoneType;
 
 class UserType extends AbstractType
 {
@@ -56,7 +57,7 @@ class UserType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('imageFile', FileType::class, [
+            ->add('imageFile', DropzoneType::class, [
                 'label' => false,
                 'help' => 'Format (jpg, jpeg et png)',
                 'required' => false,

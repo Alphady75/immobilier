@@ -27,6 +27,23 @@
                     <td>
                         <div class="row">
                             <div class="col-6">
+                                {% if app.request.attributes.get('_route') == 'admin_ville_edit' %}
+
+                                    {% if ville.mediaName %}
+
+                                    <img src="{{ vich_uploader_asset(ville) | imagine_filter('medium_size') }}" class="img-fluid mt-3 mb-3" 
+                                        alt="{{ ville.name }}">
+
+                                    {% else %}
+
+                                    <div class="small-box bg-white p-2 text-center">
+                                        <i class="fa fa-image text-secondary fa-4x"></i>
+                                    </div>
+
+                                    {% endif %}
+
+                                {% endif %}
+
                                 {{ form_row(form.imageFile) }}
                             </div>
                         </div>

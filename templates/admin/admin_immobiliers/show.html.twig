@@ -63,11 +63,11 @@
                         <td>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <strong>Minimale</strong><br>
+                                    <span>Minimale</span><br>
                                     {{ immobilier.surfaceMin }} m<sup>2</sup>
                                 </div>
                                 <div class="col-sm-6">
-                                    <strong>Maximale</strong><br>
+                                    <span>Maximale</span><br>
                                     {{ immobilier.surfaceMax }} m<sup>2</sup>
                                 </div>
                             </div>
@@ -78,18 +78,18 @@
                         <td>
                             <div class="row mb-3">
                                 <div class="col-sm-6">
-                                    <strong>Type</strong> <br>
+                                    <span>Type</span> <br>
                                     <span class="badge badge-light">{{ immobilier.type }}</span>
                                 </div>
                                 <div class="col-sm-6">
-                                    <strong>Catégorie</strong> <br>
+                                    <span>Catégorie</span> <br>
                                     <span class="badge badge-{{ immobilier.categorie ? 'success' : 'light' }}">
                                     {{ immobilier.categorie.name ?? 'Non classé' }}</span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <strong>Statut</strong> <br>
+                                    <span>Statut</span> <br>
                                     <span class="badge badge-light">{{ immobilier.statut }}</span>
                                 </div>
                             </div>
@@ -127,56 +127,56 @@
                             <div class="row mb-3">
                                 {% if immobilier.climatisation %}
                                 <div class="col-sm-4 pb-3">
-                                    <i class="fa fa-server text-success"></i> <strong>Climatisation</strong>
+                                    <i class="fa fa-server text-success"></i> <span>Climatisation</span>
                                 </div>
                                 {% endif %}
 
                                 {% if immobilier.piscine %}
                                 <div class="col-sm-4 pb-3">
-                                    <i class="fa fa-swimmer text-success"></i> <strong>Piscine</strong>
+                                    <i class="fa fa-swimmer text-success"></i> <span>Piscine</span>
                                 </div>
                                 {% endif %}
 
                                 {% if immobilier.chauffageCentral %}
                                 <div class="col-sm-4 pb-3">
-                                    <i class="fa fa-charging-station text-success"></i> <strong>Chauffage central</strong>
+                                    <i class="fa fa-charging-station text-success"></i> <span>Chauffage central</span>
                                 </div>
                                 {% endif %}
 
                                 {% if immobilier.spaMassages %}
                                 <div class="col-sm-4 pb-3">
-                                    <i class="fa fa-procedures text-success"></i> <strong>Spa massages</strong>
+                                    <i class="fa fa-procedures text-success"></i> <span>Spa massages</span>
                                 </div>
                                 {% endif %}
 
                                 {% if immobilier.gym %}
                                 <div class="col-sm-4 pb-3">
-                                    <i class="fa fa-people-carry text-success"></i> <strong>Gym</strong>
+                                    <i class="fa fa-people-carry text-success"></i> <span>Gym</span>
                                 </div>
                                 {% endif %}
 
                                 {% if immobilier.alarme %}
                                 <div class="col-sm-4 pb-3">
-                                    <i class="fa fa-podcast text-success"></i> <strong>Alarme</strong>
+                                    <i class="fa fa-podcast text-success"></i> <span>Alarme</span>
                                 </div>
                                 {% endif %}
 
                                 {% if immobilier.wifi %}
                                 <div class="col-sm-4 pb-3">
-                                    <i class="fa fa-wifi text-success"></i> <strong>Wifi</strong>
+                                    <i class="fa fa-wifi text-success"></i> <span>Wifi</span>
                                 </div>
                                 {% endif %}
 
                                 {% if immobilier.chambres %}
                                 <div class="col-sm-4 pb-3">
-                                    <strong><i class="fa fa-bed text-success"></i> Chambres</strong><br>
+                                    <span><i class="fa fa-bed text-success"></i> Chambres</span><br>
                                     ({{ immobilier.chambres }})
                                 </div>
                                 {% endif %}
 
                                 {% if immobilier.salleBain %}
                                 <div class="col-sm-4 pb-3">
-                                    <strong><i class="fa fa-bath text-success"></i> Salle de bain</strong><br>
+                                    <span><i class="fa fa-bath text-success"></i> Salle de bain</span><br>
                                     ({{ immobilier.salleBain }})
                                 </div>
                                 {% endif %}
@@ -186,26 +186,26 @@
                             <div class="row mt-3">
                                 {% if immobilier.parking >= 1 %}
                                 <div class="col-sm-4 pb-3">
-                                    <i class="fa fa-car-side text-success"></i> <strong>Parking</strong>
+                                    <i class="fa fa-car-side text-success"></i> <span>Parking</span>
                                 </div>
                                 {% endif %}
 
                                 {% if immobilier.garage >= 1 %}
                                 <div class="col-sm-4 pb-3">
-                                    <strong><i class="fa fa-warehouse text-success"></i> Garage</strong><br>
+                                    <span><i class="fa fa-warehouse text-success"></i> Garage</span><br>
                                     ({{ immobilier.garage }})
                                 </div>
                                 {% endif %}
 
                                 {% if immobilier.tailleGarage >= 1 %}                                
                                 <div class="col-sm-4 pb-3">
-                                    <strong><i class="fa fa-car text-success"></i> Taille garage</strong><br>
+                                    <span><i class="fa fa-car text-success"></i> Taille garage</span><br>
                                     ({{ immobilier.tailleGarage }})
                                 </div>
                                 {% endif %}
 
                                 <div class="col-sm-12 pb-3">
-                                    <strong>Année de construction</strong><br>
+                                    <span>Année de construction</span><br>
                                     <i class="fa fa-calendar-alt"></i> {{ immobilier.anneeConstrunction|date('Y') }}
                                 </div>
                             </div>
@@ -304,4 +304,5 @@
           $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
         </script>
+    {{ encore_entry_script_tags('app') }}
 {% endblock %}
