@@ -34,7 +34,7 @@
 <div class="clearfix"></div>
     <div class="search__area bg__shadow">
         <div class="container">
-            {{ include('immobiliers/composants/_search_form.html.twig') }}
+            {% include 'immobiliers/composants/_search_form.html.twig' with {form: form, min: min, max:max} only %}
         </div>
     </div>
     <!-- LISTING LIST -->

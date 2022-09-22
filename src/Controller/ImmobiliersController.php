@@ -37,6 +37,8 @@ class ImmobiliersController extends AbstractController
         return $this->render('immobiliers/immobiliers.html.twig', [
             'form' => $form->createView(),
             'immobiliers' => $immobiliers,
+            'min' => 0,
+            'max' => 1000000,
         ]);
     }
 

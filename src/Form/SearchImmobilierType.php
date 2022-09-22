@@ -62,6 +62,7 @@ class SearchImmobilierType extends AbstractType
         ])
         ->add('minTarif', MoneyType::class, [
             'label' => false,
+            'help' => 'Minimum',
             'required' => false,
             'attr' => [
                 'placeholder' => 'Minimum',
@@ -69,6 +70,7 @@ class SearchImmobilierType extends AbstractType
         ])
         ->add('maxTarif', MoneyType::class, [
             'label' => false,
+            'help' => 'Maximum',
             'required' => false,
             'attr' => [
                 'placeholder' => 'Maximum',

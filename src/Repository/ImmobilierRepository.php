@@ -147,7 +147,7 @@ class ImmobilierRepository extends ServiceEntityRepository
      */
     private function findMinMaxPrice(SearchImmobilier $search): array
     {
-        $result = $this->getSearcheQuery($search)
+        $result = $this->getSearcheQuery($search, true)
             ->select('MIN(i.tarif) as min', 'MAX(i.tarif) as max')
             ->getQuery()
             ->getScalarResult()
@@ -159,7 +159,7 @@ class ImmobilierRepository extends ServiceEntityRepository
     /**
      * //@return QueryBuilder
      */
-    private function getSearcheQuery(SearchImmobilier $search)//: QueryBuilder
+    private function getSearcheQuery(SearchImmobilier $search, $ignoreprice = false)//: QueryBuilder
     {
         $query = $this->createQueryBuilder('i')
             ->select('c', 'i')
@@ -187,13 +187,13 @@ class ImmobilierRepository extends ServiceEntityRepository
             ->setParameter('statut', $search->statut);            
         }
 
-        if (!empty($search->minTarif)) {
+        if (!empty($search->minTarif && $ignoreprice === false)) {
             $query = $query
             ->andWhere('i.tarif >= :minTarif')
             ->setParameter('minTarif', $search->minTarif);
         }
 
-        if (!empty($search->maxTarif)) {
+        if (!empty($search->maxTarif && $ignoreprice === false)) {
             $query = $query
             ->andWhere('i.tarif <= :maxTarif')
             ->setParameter('maxTarif', $search->maxTarif);
