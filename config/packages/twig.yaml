@@ -8,6 +8,7 @@ twig:
         pays: ''
         appEmail: 'immosercure@gmail.com'
         appPhone: '(123)456-7890'
+        appAdresse: 'N° Ruelle/Avenue'
         currency: ' €'
         ashtag: '#'
         appConcepteur: "HL Conception"

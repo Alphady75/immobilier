@@ -68,7 +68,7 @@ class ContactType extends AbstractType
             ])
             ->add('message', TextareaType::class, [
                 'label' => false,
-                'attr' => ['placeholder' => 'Votre message...'],
+                'attr' => ['placeholder' => 'Votre message...', 'rows' => 8],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ ne peut pas être vide',

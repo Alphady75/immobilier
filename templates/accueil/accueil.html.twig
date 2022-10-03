@@ -18,7 +18,7 @@
                 <div class="col-md-6">
                     <div class="title__head-v2">
                         <h2 class="text-capitalize">Top villes</h2>
-                        <p class="text-capitalize mb-0">Find Properties In These Cities.</p>
+                        <p class="text-capitalize mb-0">Trouver des propriétés dans ces villes.</p>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                                 <div class="desc">
                                     <h6 class="text-capitalize">{{ ville.name }}</h6>
                                     <p class="text-capitalize">
-                                        {{ ville.immobiliers|length > 1 ? ville.immobiliers|length : 'Aucun bien' }} 
+                                        {{ ville.immobiliers|length > 0 ? ville.immobiliers|length : 'Aucun bien' }} 
                                         immobilier{{ ville.immobiliers|length > 1 ? 's' : '' }}
                                     </p>
                                 </div>
@@ -62,7 +62,7 @@
                 <div class="col-md-6">
                     <div class="title__head-v2">
                         <h2 class="text-capitalize">Les plus recents</h2>
-                        <p class="text-capitalize">Handpicked Exclusive Properties By Our Team.</p>
+                        <p class="text-capitalize">Propriétés exclusives triées sur le volet par notre équipe.</p>
                     </div>
                 </div>
             </div>
@@ -156,17 +156,15 @@
                     <div class="title__leading">
                         <!-- <h6 class="text-uppercase">trusted By thousands</h6> -->
                         <h2 class="text-capitalize">Pourquoi nous choisir?</h2>
-                        <p>
-                            The first step in selling your property is to get a valuation from local experts. They will
-                            inspect your home and take into account its unique features, the area and market conditions
-                            before providing you with the most accurate valuation.
+                        <p class="">
+                            La première étape de la vente de votre propriété consiste à obtenir une estimation par des experts locaux. Ils inspecteront votre maison et prendront en compte ses caractéristiques uniques, la région et les conditions du marché avant de vous fournir l'évaluation la plus précise.
                         </p>
-                        <p>
+                        <p class="">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
                             ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                             laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
-                        <a href="#" class="btn btn-primary mt-3 text-capitalize"> read more
+                        <a href="#" class="btn btn-primary mt-3 text-capitalize"> Lire plus
                             <i class="fa fa-angle-right ml-3 "></i></a>
                     </div>
                 </div>
@@ -184,8 +182,7 @@
                         <h2 class="text-center text-capitalize">
                             Dernières annonces
                         </h2>
-                        <p class="text-center text-capitalize">Find Of The Most Popular Real Estate Company All Around
-                            Indonesia.</p>
+                        <p class="text-center text-capitalize">Trouvez la société immobilière la plus populaire</p>
                     </div>
                 </div>
                 <div class="clearfix"></div>

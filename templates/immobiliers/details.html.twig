@@ -10,7 +10,7 @@
                 <div class="col-lg-12">
                     <div class="section__breadcrumb-v1">
                         <ol class="breadcrumb mb-0 bg-light">
-                            <li class="breadcrumb-item"><a href="index.html"><i class="fa fa-home"></i> </a></li>
+                            <li class="breadcrumb-item"><a href="{{ path('accueil') }}"><i class="fa fa-home"></i> </a></li>
                             <li class="breadcrumb-item"> <a href="{{ path('immobiliers') }}">Immobiliers</a></li>
                             <li class="breadcrumb-item active"> <span class="text-capitalize"> {{ immobilier.name }}</span>
                             </li>
@@ -47,20 +47,6 @@
                                     <h3 class="text-capitalize text-gray">
                                         {{ immobilier.tarif|number_format(0, ',', ' ') ~ ' ' ~ currency }}
                                     </h3>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a href="#" class="badge badge-primary p-2 rounded"><i
-                                                    class="fa fa-exchange"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#" class="badge badge-primary p-2 rounded"><i
-                                                    class="fa fa-heart"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#" class="badge badge-primary p-2 rounded"><i
-                                                    class="fa fa-print"></i></a>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -126,20 +112,6 @@
                         <!-- PROFILE AGENT -->
                         {{ include('immobiliers/composants/_contact_form.html.twig') }}
                         <!-- END PROFILE AGENT -->
-                        <div class="download mb-0">
-                            <h5 class="text-center text-capitalize">Property Attachments</h5>
-                            <div class="download__item">
-                                <a href="#" target="_blank"><i class="fa fa-file-pdf-o mr-3"
-                                        aria-hidden="true"></i>Download Document.Pdf</a>
-                            </div>
-                            <div class="download__item">
-                                <a href="#" target="_blank"><i class="fa fa-file-word-o mr-3"
-                                        aria-hidden="true"></i>Presentation
-                                    2016-17.Doc</a>
-                            </div>
-                        </div>
-
-
                     </div>
                 </div>
                 <div class="col-lg-7">

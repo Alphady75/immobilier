@@ -77,7 +77,7 @@
                         {{ form_row(form.message) }}
                         <small class="text-danger"><sup>*</sup>Champs obligatoire</small>
                         <small class="d-block">
-                            Les informations recueillies sont nécessaires au traitement de votre demande par BARNES. Vous pouvez consulter notre Charte de protection des données en cliquant sur ce <a href="">lien</a>. À tout moment, vous disposez d’un droit d’accès, de modification et de suppression de vos données.
+                            Les informations recueillies sont nécessaires au traitement de votre demande. Vous pouvez consulter notre Charte de protection des données en cliquant sur ce <a href="">lien</a>. À tout moment, vous disposez d’un droit d’accès, de modification et de suppression de vos données.
                             Merci de cocher la case
                         </small>
                     </div>
@@ -92,22 +92,22 @@
 
         <div class="col-md-5">
             <div class="wrap__contact-open-hours">
-                <h5 class="text-capitalize">open hours</h5>
+                <h5 class="text-capitalize">Heures d'ouverture</h5>
                 <ul class="list-unstyled">
                     <li class="d-flex align-items-center justify-content-between">
-                        <span>Monday - Friday</span>
-                        <span>09 AM - 19 PM</span>
+                        <span>Lundi - Vendredi</span>
+                        <span>09 - 19 Heure</span>
                     </li>
                     <li class="d-flex align-items-center justify-content-between">
-                        <span>Saturday</span> <span>09
-                        AM - 14 PM</span>
+                        <span>Samedi</span> <span>09
+                         - 14 Heure</span>
                     </li>
                     <li class="d-flex align-items-center justify-content-between">
-                        <span>Sunday</span>
-                        <span>Closed</span></li>
+                        <span>Dimanche</span>
+                        <span>Fermer</span></li>
                     </ul>
                 </div>
-                <h5>Info location</h5>
+                <h5>Emplacement des informations</h5>
                 <div class="wrap__contact-form-office">
                     <ul class="list-unstyled">
                         <li>
@@ -115,22 +115,21 @@
                                 <i class="fa fa-home"></i>
                             </span>
 
-                            PO Box 16122 Collins Street West Victoria
-                            8007 Australia
+                            {{ appAdresse }}
 
 
                         </li>
                         <li>
                             <span>
                                 <i class="fa fa-phone"></i>
-                                <a href="tel:">(+12) 34567 890 123</a>
+                                <a href="tel:">{{ appPhone }}</a>
                             </span>
 
                         </li>
                         <li>
                             <span>
                                 <i class="fa fa-envelope"></i>
-                                <a href="mailto:">mail@example.com</a>
+                                <a href="mailto:">{{ appEmail }}</a>
                             </span>
 
                         </li>
@@ -143,7 +142,7 @@
                     </ul>
 
                     <div class="social__media">
-                        <h5>find us</h5>
+                        <h5>Trouver nous</h5>
                         <ul class="list-inline">
 
                             <li class="list-inline-item">
