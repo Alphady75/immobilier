@@ -1,39 +1,39 @@
 {{ form_start(form, {attr: {class: 'search__area-inner'}}) }}
 
 <div class="row">
-	<div class="col-6 col-md-3">
-		<div class="form-group">
-			{{ form_row(form.statut) }}
-		</div>
-	</div>
-	<div class="col-6 col-md-3">
-		<div class="form-group">
-			{{ form_row(form.type) }}
-		</div>
-	</div>
-	<div class="col-6 col-md-3">
+	<div class="col-6 col-md-4">
 		<div class="form-group">
 			{{ form_row(form.categories) }}
 		</div>
 	</div>
-	<div class="col-6 col-md-3">
+	<div class="col-6 col-md-4">
 		<div class="form-group">
 			{{ form_row(form.villes) }}
+		</div>
+	</div>
+	<div class="col-sm-2">
+		<div class="form-group">
+			{{ form_row(form.statut) }}
+		</div>
+	</div>
+	<div class="col-sm-2">
+		<div class="form-group">
+			{{ form_row(form.type) }}
 		</div>
 	</div>
 </div>
 
 <div class="row">
-	<div class="col-6 col-md-3">
+	<!--<div class="col-6 col-md-3">
 		<!--<div class="form-group">
 			{{ form_row(form.tarif) }}
 		</div>-->
 
-		<!-- NoUilider -->
-		<div id="tarif-slider" data-min="{{ min }}" data-max="{{ max }}"></div>
+		<!-- NoUilider --
+		<div id="tarif-slider" data-min="{{ min }}" data-max="{{ max }}"></div>--
 
-	</div>
-	<div class="col-12 col-md-6">
+	</div>-->
+	<div class="col-sm-8 budget">
 		<div class="row">
 			<div class="col-6">
 				<div class="form-group">
@@ -48,12 +48,12 @@
 		</div>
 
 	</div>
-	<div class="col-6 col-md-3">
+	<div class="col-sm-3 ml-auto">
 		<div class="form-group">
 			<div class="form-group">
-				<button type="submit" class="btn btn-primary text-uppercase btn-block"> Rechercher <i
-					class="fa fa-search ml-1"></i></button>
-				</div>
+				<button type="submit" class="btn btn-primary text-uppercase btn-block">
+					<i class="fa fa-filter"></i> Rechercher
+				</button>
 			</div>
 		</div>
 	</div>

@@ -49,7 +49,7 @@ class ImmobilierType extends AbstractType
             ->add('tarif', MoneyType::class, [
                 'label' => false,
                 'help' => 'Tarif',
-                'attr' => ['placeholder' => 'Tarif...'],
+                'attr' => ['placeholder' => 'Tarif...', 'min' => 0],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ ne peut pas être vide',

@@ -39,7 +39,7 @@ class SearchImmobilierType extends AbstractType
         ])
         ->add('statut', ChoiceType::class, [
             'label' => false,
-            'help' => 'Statut (Exemple: à vendre)',
+            'help' => 'Statut',
             'required' => false,
             'choices'  => [
                 'A vendre'    =>  'a-vendre',
@@ -51,7 +51,7 @@ class SearchImmobilierType extends AbstractType
         ])
         ->add('type', ChoiceType::class, [
             'label' => false,
-            'help' => 'Type (Exemple: Maison familialle)',
+            'help' => 'Type',
             'required' => false,
             'choices'  => [
                 'Maison familialle'    =>  'maison-familliale',
@@ -62,18 +62,18 @@ class SearchImmobilierType extends AbstractType
         ])
         ->add('minTarif', MoneyType::class, [
             'label' => false,
-            'help' => 'Minimum',
+            'help' => 'Budget min',
             'required' => false,
             'attr' => [
-                'placeholder' => 'Minimum',
+                'placeholder' => 'Budget min',
             ]
         ])
         ->add('maxTarif', MoneyType::class, [
             'label' => false,
-            'help' => 'Maximum',
+            'help' => 'Bugdet max',
             'required' => false,
             'attr' => [
-                'placeholder' => 'Maximum',
+                'placeholder' => 'Bugdet max',
             ]
         ])
         ->add('categories', EntityType::class, [

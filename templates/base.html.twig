@@ -27,6 +27,20 @@
     <link rel="apple-touch-icon" href="icon.png">
     <meta name="theme-color" content="#3454d1">
     <link href="{{ asset('themes/front/css/styles.css?fd365619e86ad9137a29') }}" rel="stylesheet">
+    <style type="text/css">
+        .ts-control .item{
+            background: #ab911d!important;
+            border: transparent!important;
+            color: white!important;
+        }
+        .turbo-progress-bar {
+          height: 3px;
+          background-color: #ab911d!important;
+        }
+        .budget .form-control{
+            height: auto!important;
+        }
+    </style>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
