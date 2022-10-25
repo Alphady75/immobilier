@@ -55,6 +55,9 @@ class SearchImmobilierType extends AbstractType
             'required' => false,
             'choices'  => [
                 'Maison familialle'    =>  'maison-familliale',
+                'Maison unifamiliale' => 'maison-unifamiliale',
+                'Maison de luxe' => 'maison-de-luxe',
+                'Maison de campagne' => 'maison-compagne',
             ],
             'attr' => ['class' => 'text-muted'],
             'choice_attr' => ['class' => 'checkbox'],

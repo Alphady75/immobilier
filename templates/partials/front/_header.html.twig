@@ -14,21 +14,24 @@
 					<p class="text-center">Votre propriété, notre priorité et à partir de 10 $ par jour avec des rabais sur les offres à durée limitée</p>
 
 					<div class="bg__overlay-black p-4">
-						<div class="search__property">
+						<form method="get" action="{{ path('immobiliers') }}" class="search__property">
 							<div class="position-relative">
 								<div class="search__container">
 									<div class="row input-group no-gutters">
 										<div class="col-lg-3">
-											<select class="select_option form-control" name="select">
-												<option selected>Programmes Neufs</option>
-												<option>Maison</option>
-												<option>Apartement </option>
+											<select class="select_option form-control" name="type">
+												<option data-display="--Type--">--Type--</option>
+												<option value="maison-familliale">Maison familialle</option>
+												<option value="maison-unifamiliale">Maison unifamiliale </option>
+												<option value="maison-de-luxe">Maison de luxe</option>
+												<option value="maison-compagne">Maison de campagne</option>
 											</select>
 										</div>
 										<div class="col-lg-3">
-											<select class="select_option form-control" name="select">
-												<option data-display="Toute les régions">Toute les régions</option>
-												<option>Paris</option>
+											<select class="select_option form-control" name="statut">
+												<option data-display="--statut--">--statut--</option>
+												<option value="a-louer">A louer</option>
+												<option value="a-vendre">A vendre</option>
 											</select>
 										</div>
 										<div class="col-lg-3">
@@ -40,14 +43,14 @@
 											</select>
 										</div>
 										<div class="col-lg-3 input-group-append">
-											<a href="{{ path('immobiliers') }}" class="btn btn-primary pt-3 btn-block text-uppercase">
+											<button type="submit" class="btn btn-primary pt-3 btn-block text-uppercase">
 												<i class="fa fa-search"></i> Chercher
-											</a>
+											</button>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</form>
 					</div>
 				</div>
 			</div>

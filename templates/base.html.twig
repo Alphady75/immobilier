@@ -23,8 +23,9 @@
     <meta name="twitter:card" content="" />
 
     <link rel="manifest" href="site.webmanifest">
-    <!-- favicon.ico in the root directory -->
-    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
+
     <meta name="theme-color" content="#3454d1">
     <link href="{{ asset('themes/front/css/styles.css?fd365619e86ad9137a29') }}" rel="stylesheet">
     <style type="text/css">
@@ -46,7 +47,7 @@
     {% endblock %}
 </head>
 
-<body class="bg-white">
+<body class="bg-white" data-turbo="false">
 
     {{ include('partials/front/_flash_message.html.twig') }}
 

@@ -82,18 +82,19 @@ class ImmobilierType extends AbstractType
                         'message' => 'Ce champ ne peut pas être vide',
                     ]),
                 ],                
-            ])
-            ->add('type', ChoiceType::class, [
+            ])->add('type', ChoiceType::class, [
                 'label' => false,
-                'help' => "Type d'immobilier",
+                'help' => 'Type',
+                'required' => false,
                 'choices'  => [
-                    'Maison familliale' =>  'maison-familliale',
+                    'Maison familialle'    =>  'maison-familliale',
+                    'Maison unifamiliale' => 'maison-unifamiliale',
+                    'Maison de luxe' => 'maison-de-luxe',
+                    'Maison de campagne' => 'maison-compagne',
                 ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ce champ ne peut pas être vide!',
-                    ]),
-                ],
+                'attr' => ['class' => 'text-muted'],
+                'choice_attr' => ['class' => 'checkbox'],
+                'label_attr' => ['class' => 'ui-check'],
             ])
             ->add('description', CKEditorType::class, [
                 'label' => false,
