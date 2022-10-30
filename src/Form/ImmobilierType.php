@@ -73,6 +73,7 @@ class ImmobilierType extends AbstractType
                         'message' => 'Ce champ ne peut pas être vide',
                     ]),
                 ],
+                'attr' => ['min' => 0, 'max' => 99999999999]
             ])
             ->add('surfaceMax', IntegerType::class, [
                 'label' => false,
@@ -81,7 +82,8 @@ class ImmobilierType extends AbstractType
                     new NotBlank([
                         'message' => 'Ce champ ne peut pas être vide',
                     ]),
-                ],                
+                ],
+                'attr' => ['min' => 0, 'max' => 99999999999]                
             ])->add('type', ChoiceType::class, [
                 'label' => false,
                 'help' => 'Type',
@@ -179,21 +181,25 @@ class ImmobilierType extends AbstractType
                 'label' => false,
                 'help' => 'Chambres',
                 'required' => false,
+                'attr' => ['min' => 0, 'max' => 99999999999]
             ])
             ->add('salleBain', IntegerType::class, [
                 'label' => false,
                 'help' => 'Salle de bain',
                 'required' => false,
+                'attr' => ['min' => 0, 'max' => 99999999999]
             ])
             ->add('garage', IntegerType::class, [
                 'label' => false,
                 'help' => 'Garage',
                 'required' => false,
+                'attr' => ['min' => 0, 'max' => 99999999999]
             ])
             ->add('tailleGarage', IntegerType::class, [
                 'label' => false,
                 'help' => 'Taille Garage',
                 'required' => false,
+                'attr' => ['min' => 0, 'max' => 99999999999]
             ])
             ->add('anneeConstrunction', DateType::class, [
                 'label' => false,
