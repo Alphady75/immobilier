@@ -1,0 +1,25 @@
+{{ form_start(form, {attr: {class: 'bg__overlay-black p-4 mx-auto home_search'}}) }}
+	<div class="search__property">
+		<div class="position-relative">
+			<form class=" search__container">
+				<div class="row input-group no-gutters">
+					<div class="col-lg-3">
+						{{ form_widget(form.villes) }}
+					</div>
+					<div class="col-lg-3">
+						{{ form_widget(form.type) }}
+					</div>
+					<div class="col-lg-3">
+						{{ form_widget(form.statut) }}
+					</div>
+					<div class="col-lg-3 input-group-append">
+						<button type="submit" class="btn btn-primary btn-block">
+							<i class="fa fa-search"></i> <span
+							class="ml-1 text-uppercase">Chercher</span>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+{{ form_end(form) }}

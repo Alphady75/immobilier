@@ -25,7 +25,7 @@
                             <th class="w-25">Image à la une</th>
                             <td>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
 
                                         {% if app.request.attributes.get('_route') == 'admin_immobiliers_edit' %}
 
@@ -38,7 +38,7 @@
                                         {% endif %}
 
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
 
                                         {{ form_row(form.imageFile) }}
                                         
@@ -104,6 +104,37 @@
                     </tbody>
                 </table>
 
+                <h5 class="font-weight-bold pl-2 h3">Fichiers joints</h5>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th class="w-25">Document</th>
+                            <td>
+                                <div class="row">
+                                    {% if app.request.attributes.get('_route') == 'admin_immobiliers_edit' %}
+                                    <div class="col-md-7">
+
+                                        <div class="pb-4">
+                                            {% if immobilier.document %}
+                                                <a href="{{ vich_uploader_asset(immobilier, 'documentFile') }}" class="btn btn-light" target="_blank">Voir le document</a>
+                                            {% else %}
+                                                <span>Aucun document joint</span>
+                                            {% endif %}
+                                        </div>
+
+                                    </div>
+                                    {% endif %}
+                                    <div class="col-md-7">
+
+                                        {{ form_row(form.documentFile) }}
+                                        
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
                 <h5 class="font-weight-bold pl-2 h3">Localisation / Coordonnées</h5>
                 <table class="table table-borderless">
                     <tbody>
@@ -120,7 +151,7 @@
                     </tbody>
                 </table>
 
-                <h5 class="font-weight-bold pl-2 h3">Informations supplémentaires</h5>
+                <h5 class="font-weight-bold pl-2 h3">Caractéristiques</h5>
                 <table class="table table-borderless">
                     <tbody>
                         <tr>
@@ -181,6 +212,9 @@
                             <th class="w-25"></th>
                             <td>
                                 <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+                                {% if app.request.attributes.get('_route') == 'admin_immobiliers_edit' %}
+                                    {{ include('admin/admin_immobiliers/_delete_form.html.twig') }}
+                                {% endif %}
                             </td>
                         </tr>
                     </tbody>

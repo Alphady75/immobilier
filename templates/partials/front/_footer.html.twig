@@ -49,37 +49,22 @@
             		<div class="link__category">
             			<ul class="list-unstyled ">
             				<li class="list-inline-item">
-            					<a href="#">Commerciale</a>
+            					<a href="{{ path('accueil') }}">Annonces</a>
             				</li>
             				<li class="list-inline-item">
-            					<a href="#">Affaires</a>
+            					<a href="{{ path('immobiliers') }}">Biens immobiliers</a>
             				</li>
             				<li class="list-inline-item">
-            					<a href="#">Maison</a>
+            					<a href="{{ path('annonces') }}">Actualitées</a>
             				</li>
             				<li class="list-inline-item">
-            					<a href="#">Apartements</a>
+            					<a href="{{ path('contact') }}">Contact</a>
             				</li>
+            				{% for ville in villes() %}
             				<li class="list-inline-item">
-            					<a href="#">Residence</a>
+            					<a href="{{ path('immobiliers') }}?villes%5B%5D={{ ville.id }}">{{ ville.name }}</a>
             				</li>
-            				<li class="list-inline-item">
-            					<a href="#">Villa</a>
-            				</li>
-            				<li class="list-inline-item">
-            					<a href="#">Bureau</a>
-            				</li>
-            				<li class="list-inline-item">
-            					<a href="#">classic</a>
-            				</li>
-            				<li class="list-inline-item">
-            					<a href="#">Modern</a>
-            				</li>
-
-            				<li class="list-inline-item">
-            					<a href="#">Luxieux</a>
-            				</li>
-
+            				{% endfor %}
             			</ul>
             		</div>
             	</div>

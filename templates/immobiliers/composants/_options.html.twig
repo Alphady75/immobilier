@@ -16,9 +16,18 @@
 </li>
 {% endif %}
 
+{% if immobilier.surfaceMin %}
+<li class="list-inline-item">
+	Surface min
+	<span>
+		<i class="fa fa-map"></i> {{ immobilier.surfaceMin }} m<sup>2</sup>
+	</span>
+</li>
+{% endif %}
+
 {% if immobilier.surfaceMax %}
 <li class="list-inline-item">
-	Area
+	Surface max
 	<span>
 		<i class="fa fa-map"></i> {{ immobilier.surfaceMax }} m<sup>2</sup>
 	</span>

@@ -8,17 +8,29 @@
 	</div>
 	<div class="card-body table-responsive p-0">
 
-		<table class="table table-striped projects">
+		<table class="table table-hover projects">
 			<thead>
+				{% if app.request.attributes.get('_route') == 'admin_immobiliers_index' %}
+				<tr class="bg-light">
+					<td colspan="8">
+						{{ include('admin/admin_immobiliers/_search_immobilier.html.twig') }}
+
+						<br>
+						<p>
+							Affichage de {{ current }} à {{ immobiliers|length }} sur 
+							<strong>{{ immobiliers.getTotalItemCount }}</strong>
+						</p>
+					</td>
+				</tr>
+				{% endif %}
 				<tr>
 					<th>Id</th>
 					<th>Immoilier</th>
 					<th>Intitulé</th>
 					<th>Tarif</th>
-					<th>Catégorie</th>
+					<th>Type</th>
 					<th>Statut</th>
 					<th>Online</th>
-					<th>Date</th>
 					<th>actions</th>
 				</tr>
 			</thead>
@@ -34,7 +46,7 @@
 
 						{% else %}
 
-						<div class="small-box bg-white p-2 text-center">
+						<div class="small-box bg-white p-2 text-center" style="width: 80px;">
 							<i class="fa fa-home text-secondary fa-3x"></i>
 						</div>
 
@@ -43,15 +55,12 @@
 					</td>
 					<td>{{ immobilier.name|u.truncate(30, '...') }}</td>
 					<td><strong>{{ immobilier.tarif|number_format(0, ',', ' ') ~ ' ' ~ currency }}</strong></td>
-					<td>{{ immobilier.categorie.name ?? 'Non classé' }}</td>
-					<td>{{ immobilier.statut }}</td>
+					<td><span class="badge badge-light text-uppercase">{{ immobilier.categorie.name ?? 'Non classé' }}</span></td>
+					<td><span class="badge badge-light text-uppercase">{{ immobilier.statut }}</span></td>
 					<td>
-						<span class="badge badge-{{ immobilier.online ? 'success' : 'secondary' }}">
+						<span class="badge text-uppercase badge-{{ immobilier.online ? 'success' : 'secondary' }}">
 							{{ immobilier.online ? 'En ligne' : 'Hors ligne' }}
 						</span>
-					</td>
-					<td> 
-						Créer le {{ immobilier.created ? immobilier.created|date('d/m/Y') : '' }} <br>
 					</td>
 					<td>
 						<a href="{{ path('admin_immobiliers_show', {'id': immobilier.id}) }}" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></a>

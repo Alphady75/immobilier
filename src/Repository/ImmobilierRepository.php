@@ -129,9 +129,9 @@ class ImmobilierRepository extends ServiceEntityRepository
      * Recupère les annonces en lien avec une recherche
      * @return PaginationInterface
      */
-    public function findSearch(SearchImmobilier $search): PaginationInterface
+    public function findVisibleSearch(SearchImmobilier $search): PaginationInterface
     {
-        $query = $this->getSearcheQuery($search)->getQuery();
+        $query = $this->getSearcheVisibleQuery($search)->getQuery();
 
         return $this->paginator->paginate(
             $query,
@@ -142,12 +142,28 @@ class ImmobilierRepository extends ServiceEntityRepository
     }
 
     /**
+     * Recupère les annonces en lien avec une recherche
+     * @return PaginationInterface
+     */
+    public function findAllSearch(SearchImmobilier $search): PaginationInterface
+    {
+        $query = $this->getAllSearchQuery($search)->getQuery();
+
+        return $this->paginator->paginate(
+            $query,
+            $search->page,
+            20
+        );
+
+    }
+
+    /**
      * Recupère le prix min et max corespondant à une recherche
      * @return integer[]
      */
     private function findMinMaxPrice(SearchImmobilier $search): array
     {
-        $result = $this->getSearcheQuery($search, true)
+        $result = $this->getSearcheVisibleQuery($search, true)
             ->select('MIN(i.tarif) as min', 'MAX(i.tarif) as max')
             ->getQuery()
             ->getScalarResult()
@@ -159,7 +175,7 @@ class ImmobilierRepository extends ServiceEntityRepository
     /**
      * //@return QueryBuilder
      */
-    private function getSearcheQuery(SearchImmobilier $search, $ignoreprice = false)//: QueryBuilder
+    private function getSearcheVisibleQuery(SearchImmobilier $search, $ignoreprice = false)//: QueryBuilder
     {
         $query = $this->createQueryBuilder('i')
             ->select('c', 'i')
@@ -168,6 +184,28 @@ class ImmobilierRepository extends ServiceEntityRepository
             ->join('i.ville', 'v')
             ->orderBy('i.created', 'DESC')
             ->andWhere('i.online = 1');
+
+        $this->getSearchFields($search, $query);
+
+        return $query;
+    }
+
+    public function getAllSearchQuery(SearchImmobilier $search, $ignoreprice = false){
+
+        $query = $this->createQueryBuilder('i')
+            ->select('c', 'i')
+            ->select('v', 'i')
+            ->join('i.categorie', 'c')
+            ->join('i.ville', 'v')
+            ->orderBy('i.created', 'DESC');
+
+        $this->getSearchFields($search, $query);
+
+        return $query;
+
+    }
+
+    private function getSearchFields(SearchImmobilier $search, $query){
 
         if(!empty($search->q)){
             $query = $query
@@ -211,28 +249,11 @@ class ImmobilierRepository extends ServiceEntityRepository
             ->setParameter('ville', $search->villes);
         }
 
-        /*if ($search->getCategories()->count() > 0) {
-            $k=0;
-            foreach($search->getCategories() as $categorie){
-                $k++;
-                $query = $query
-                ->join('i.categorie', 'c')
-                ->andWhere(":categorie$k MEMBER OF i.categorie")
-                ->setParameter("categorie$k", $categorie);
-            }
+        if (!empty($search->online)) {
+            $query = $query
+            ->andWhere('i.online = 1');
         }
 
-        if ($search->getVilles()->count() > 0) {
-            $k=0;
-            foreach($search->getVilles() as $ville){
-                $k++;
-                $query = $query
-                ->join('i.ville', 'v')
-                ->andWhere(":ville$k MEMBER OF i.ville")
-                ->setParameter("ville$k", $ville);
-            }
-        }*/
-
-        return $query;
+        return $search;
     }
 }

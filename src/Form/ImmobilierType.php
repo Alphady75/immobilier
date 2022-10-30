@@ -87,10 +87,12 @@ class ImmobilierType extends AbstractType
                 'help' => 'Type',
                 'required' => false,
                 'choices'  => [
+                    'Type' => '',
                     'Maison familialle'    =>  'maison-familliale',
                     'Maison unifamiliale' => 'maison-unifamiliale',
                     'Maison de luxe' => 'maison-de-luxe',
                     'Maison de campagne' => 'maison-compagne',
+                    'Autre' => 'autre',
                 ],
                 'attr' => ['class' => 'text-muted'],
                 'choice_attr' => ['class' => 'checkbox'],
@@ -107,6 +109,7 @@ class ImmobilierType extends AbstractType
                 'label' => false,
                 'help' => 'Statut',
                 'choices'  => [
+                    'Statut' => '',
                     'Maison à louer' =>  'a-louer',
                     'Maison à vendre' => 'a-vendre',
                 ],
@@ -196,6 +199,11 @@ class ImmobilierType extends AbstractType
                 'label' => false,
                 'help' => 'Facultatif',
                 'widget' => 'single_text',
+                'required' => false,
+            ])
+            ->add('documentFile', DropzoneType::class, [
+                'label' => false,
+                'help' => 'Document (Facultatif)',
                 'required' => false,
             ])
         ;

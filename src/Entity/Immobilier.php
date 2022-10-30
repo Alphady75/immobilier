@@ -128,6 +128,15 @@ class Immobilier
     #[ORM\Column(type: 'date', nullable: true)]
     private $anneeConstrunction;
 
+    /**
+     * @Vich\UploadableField(mapping="immobiliers_documents", fileNameProperty="document")
+     * @var File|null
+    **/
+    private $documentFile;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $document;
+
     public function __construct()
     {
         $this->immobilierMedia = new ArrayCollection();
@@ -556,5 +565,36 @@ class Immobilier
         $this->anneeConstrunction = $anneeConstrunction;
 
         return $this;
+    }
+
+    public function getDocument(): ?string
+    {
+        return $this->document;
+    }
+
+    public function setDocument(?string $document): self
+    {
+        $this->document = $document;
+
+        return $this;
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $documentFile
+     */
+    public function setDocumentFile(?File $documentFile = null): void
+    {
+        $this->documentFile = $documentFile;
+
+        if (null !== $documentFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->setUpdated(new \DateTimeImmutable());
+        }
+    }
+
+    public function getDocumentFile(): ?File
+    {
+        return $this->documentFile;
     }
 }

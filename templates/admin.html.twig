@@ -31,7 +31,7 @@
   {% endblock %}
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-  <div class="wrapper">
+  <div class="wrapper" data-turbo="false">
     <!-- Navbar -->
     {{ include('partials/admin/_header.html.twig') }}
     <!-- /.navbar -->
@@ -120,6 +120,7 @@
         </script>
 
   {{ encore_entry_script_tags('app') }}
+  
   {% endblock %}
 </body>
 </html>

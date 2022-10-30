@@ -19,23 +19,23 @@
                         <ul class="property__detail-info-list list-unstyled">
                             <li><b>Tarif:</b> {{ immobilier.tarif|number_format(0, ',', ' ') ~ currency }}</li>
                             <li><b>Surface:</b> {{ immobilier.surfaceMin }} m<sup>2</sup>
-                               Sur {{ immobilier.surfaceMax }} m<sup>2</sup></li>
+                             Sur {{ immobilier.surfaceMax }} m<sup>2</sup></li>
 
-                               {% if immobilier.chambres >= 1 %}
-                               <li>
-                                   <b>Chambres</b>
-                                   {{ immobilier.chambres }}
-                               </li>
-                               {% endif %}
+                             {% if immobilier.chambres >= 1 %}
+                             <li>
+                                 <b>Chambres</b>
+                                 {{ immobilier.chambres }}
+                             </li>
+                             {% endif %}
 
-                               {% if immobilier.salleBain %}
-                               <li>
-                                   <b>Salle de bain</b>
-                                   {{ immobilier.salleBain }}
-                               </li>
-                               {% endif %}
-                           </ul>
-                       </div>
+                             {% if immobilier.salleBain %}
+                             <li>
+                                 <b>Salle de bain</b>
+                                 {{ immobilier.salleBain }}
+                             </li>
+                             {% endif %}
+                         </ul>
+                     </div>
                                         <!--<div class="col-md-6 col-lg-6">
                                             <ul class="property__detail-info-list list-unstyled">
                                                 {% if immobilier.garage >= 1 %}
@@ -54,27 +54,19 @@
                                             </ul>
                                         </div>-->
                                     </div>
-                                    <!--<h6 class="text-primary">Additional details</h6>
+
+                                    {% if immobilier.document %}
+
+                                    <h6 class="text-primary">Fichiers joints</h6>
+                                        
                                     <div class="row">
                                         <div class="col-md-6 col-lg-6">
                                             <ul class="property__detail-info-list list-unstyled">
-                                                <li><b>Property ID:</b> RV151</li>
-                                                <li><b>Price:</b> $484,400</li>
-                                                <li><b>Property Size:</b> 1466 Sq Ft</li>
-                                                <li><b>Bedrooms:</b> 4</li>
-                                                <li><b>Bathrooms:</b> 2</li>
+                                                <li><b><a href="{{ vich_uploader_asset(immobilier, 'documentFile') }}" class="btn btn-light" target="_blank"><i class="fa fa-file"></i> Voir le document</a></b> </li>                                                
                                             </ul>
                                         </div>
-                                        <div class="col-md-6 col-lg-6">
-                                            <ul class="property__detail-info-list list-unstyled">
-                                                <li><b>Garage:</b> 1</li>
-                                                <li><b>Garage Size:</b> 458 SqFt</li>
-                                                <li><b>Year Built:</b> 2019-01-09</li>
-                                                <li><b>Property Type:</b> Full Family Home</li>
-                                                <li><b>Property Status:</b> For rent</li>
-                                            </ul>
-                                        </div>
-                                    </div>-->
+                                    </div>
+                                    {% endif %}
 
                                 </div>
                                 <!-- END INFO PROPERTY DETAIL -->
@@ -89,85 +81,85 @@
 
                                     {% if immobilier.climatisation %}
                                     <li>
-                                       <i class="fa fa-server text-success"></i> Climatisation
-                                   </li>
-                                   {% endif %}
+                                         <i class="fa fa-server"></i> Climatisation
+                                     </li>
+                                     {% endif %}
 
-                                   {% if immobilier.piscine %}
-                                   <li>
-                                       <i class="fa fa-swimmer text-success"></i> Piscine
-                                   </li>
-                                   {% endif %}
+                                     {% if immobilier.piscine %}
+                                     <li>
+                                         <i class="fa fa-swimmer"></i> Piscine
+                                     </li>
+                                     {% endif %}
 
-                                   {% if immobilier.chauffageCentral %}
-                                   <li>
-                                       <i class="fa fa-charging-station text-success"></i> Chauffage central
-                                   </li>
-                                   {% endif %}
+                                     {% if immobilier.chauffageCentral %}
+                                     <li>
+                                         <i class="fa fa-charging-station"></i> Chauffage central
+                                     </li>
+                                     {% endif %}
 
-                                   {% if immobilier.spaMassages %}
-                                   <li>
-                                       <i class="fa fa-procedures text-success"></i> Spa massages
-                                   </li>
-                                   {% endif %}
+                                     {% if immobilier.spaMassages %}
+                                     <li>
+                                         <i class="fa fa-procedures"></i> Spa massages
+                                     </li>
+                                     {% endif %}
 
-                                   {% if immobilier.gym %}
-                                   <li>
-                                       <i class="fa fa-people-carry text-success"></i> Gym
-                                   </li>
-                                   {% endif %}
+                                     {% if immobilier.gym %}
+                                     <li>
+                                         <i class="fa fa-people-carry"></i> Gym
+                                     </li>
+                                     {% endif %}
 
-                                   {% if immobilier.alarme %}
-                                   <li>
-                                       <i class="fa fa-podcast text-success"></i> Alarme
-                                   </li>
-                                   {% endif %}
+                                     {% if immobilier.alarme %}
+                                     <li>
+                                         <i class="fa fa-podcast"></i> Alarme
+                                     </li>
+                                     {% endif %}
 
-                                   {% if immobilier.wifi %}
-                                   <li>
-                                       <i class="fa fa-wifi text-success"></i> Wifi
-                                   </li>
-                                   {% endif %}
+                                     {% if immobilier.wifi %}
+                                     <li>
+                                         <i class="fa fa-wifi"></i> Wifi
+                                     </li>
+                                     {% endif %}
 
-                                   {% if immobilier.chambres %}
-                                   <li>
-                                       <i class="fa fa-bed text-success"></i> Chambres
-                                       ({{ immobilier.chambres }})
-                                   </li>
-                                   {% endif %}
+                                     {% if immobilier.chambres %}
+                                     <li>
+                                         <i class="fa fa-bed"></i> Chambres
+                                         ({{ immobilier.chambres }})
+                                     </li>
+                                     {% endif %}
 
-                                   {% if immobilier.salleBain %}
-                                   <li>
-                                       <i class="fa fa-bath text-success"></i> Salle de bain
-                                       ({{ immobilier.salleBain }})
-                                   </li>
-                                   {% endif %}
+                                     {% if immobilier.salleBain %}
+                                     <li>
+                                         <i class="fa fa-bath"></i> Salle de bain
+                                         ({{ immobilier.salleBain }})
+                                     </li>
+                                     {% endif %}
 
-                                   {% if immobilier.parking >= 1 %}
-                                   <li>
-                                       <i class="fa fa-car-side text-success"></i> Parking
-                                   </li>
-                                   {% endif %}
+                                     {% if immobilier.parking >= 1 %}
+                                     <li>
+                                         <i class="fa fa-car-side"></i> Parking
+                                     </li>
+                                     {% endif %}
 
-                                   {% if immobilier.garage >= 1 %}
-                                   <li>
-                                       <i class="fa fa-warehouse text-success"></i> Garage
-                                       ({{ immobilier.garage }})
-                                   </li>
-                                   {% endif %}
+                                     {% if immobilier.garage >= 1 %}
+                                     <li>
+                                         <i class="fa fa-warehouse"></i> Garage
+                                         ({{ immobilier.garage }})
+                                     </li>
+                                     {% endif %}
 
-                                   {% if immobilier.tailleGarage >= 1 %}                                
-                                   <li>
-                                       <i class="fa fa-car text-success"></i> Taille garage
-                                       ({{ immobilier.tailleGarage }})
-                                   </li>
-                                   {% endif %}
-                               </ul>
-                           </div>
-                           <!-- END FEATURES -->
+                                     {% if immobilier.tailleGarage >= 1 %}                                
+                                     <li>
+                                         <i class="fa fa-car"></i> Taille garage
+                                         ({{ immobilier.tailleGarage }})
+                                     </li>
+                                     {% endif %}
+                                </ul>
+                         </div>
+                         <!-- END FEATURES -->
 
-                           <!-- LOCATION -->
-                           <div class="single__detail-features">
+                         <!-- LOCATION -->
+                         <div class="single__detail-features">
                             <h6 class="text-capitalize detail-heading">location</h6>
                             <!-- FILTER VERTICAL -->
                             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -205,6 +197,7 @@
                         style="border:0;" allowfullscreen></iframe>
                     </div>
 
+                    
 
                 </div>
                 <!-- END FILTER VERTICAL -->

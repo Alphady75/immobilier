@@ -56,6 +56,11 @@ class SearchImmobilier
      */
     public $villes;
 
+    /**
+     * @var boolean
+     */
+    public $online = null;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();

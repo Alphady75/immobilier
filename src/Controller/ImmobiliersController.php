@@ -32,13 +32,14 @@ class ImmobiliersController extends AbstractController
         $form = $this->createForm(SearchImmobilierType::class, $search);
         $form->handleRequest($request);
 
-        $immobiliers = $immobilierRepository->findSearch($search);
+        $immobiliers = $immobilierRepository->findVisibleSearch($search);
 
         return $this->render('immobiliers/immobiliers.html.twig', [
             'form' => $form->createView(),
             'immobiliers' => $immobiliers,
             'min' => 0,
             'max' => 1000000,
+            'current' => $search->page,
         ]);
     }
 

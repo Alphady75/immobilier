@@ -1,18 +1,21 @@
-<a href="{{ path('immobiliers_details', {slug: immobilier.slug}) }}">
-	<div class="card__image-hover h-250">
+<a href="{{ path('immobiliers_details', {slug: immobilier.slug}) }}" class="w-100">
+	<div class="card__image-hover h-250 w-100">
 		<div class="card__image-hover-overlay">
 			<div class="listing-badges">
-				<span class="featured">
-					{{ immobilier.categorie.name }}
-				</span>
-				<span>
+				<!--<span class="featured">
 					{{ include('immobiliers/composants/_statut.html.twig') }}
+				</span>-->
+				<span>
+					{{ immobilier.categorie.name }}
 				</span>
 			</div>
 			<div class="card__image-content">
 				<div class="card__image-content-desc">
-					<h6> {{ immobilier.name }}</h6>
-					<p class="mb-0"> {{ immobilier.tarif|number_format(0, ',', ' ') ~ ' ' ~ currency }}</p>
+					<p class="mb-0">
+						<span class="badge badge-light badge-pill rounded text-uppercase" style="font-size: .7em!important">{{ include('immobiliers/composants/_statut.html.twig') }}</span> <strong>{{ immobilier.tarif|number_format(0, ',', ' ') ~ ' ' ~ currency }}</strong>
+					</p>
+					<h6> {{ immobilier.name|u.truncate(60, '...') }}</h6>
+					<p class="mb-0"><i class="fa fa-map-marker"></i> {{ immobilier.ville.name }} - {{ immobilier.reference }}</p>
 				</div>
 				<ul class="list-inline card__hidden-content">
 					{% include('immobiliers/composants/_options.html.twig') %}
@@ -20,7 +23,7 @@
 			</div>
 			{% if immobilier.imageName %}
 
-			<img src="{{ vich_uploader_asset(immobilier) | imagine_filter('medium_size') }}" 
+			<img src="{{ vich_uploader_asset(immobilier) | imagine_filter('large_size') }}" 
 				class="img-fluid h-40" alt="{{ immobilier.name }}">
 
 			{% else %}

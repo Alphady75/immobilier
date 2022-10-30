@@ -34,7 +34,7 @@
                         <th class="w-25">Image à la une</th>
                         <td>
                             <div class="row">
-                                <div class="col-md-7">
+                                <div class="col-md-12">
 
                                     {{ include('admin/admin_immobiliers/_image.html.twig') }}
                                     
@@ -98,6 +98,30 @@
                     <tr>
                         <th class="w-25">Description</th>
                         <td>{{ immobilier.description|raw }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h5 class="font-weight-bold pl-2 h3">Fichiers joints</h5>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <th class="w-25">Document</th>
+                        <td>
+                            <div class="row">
+                                <div class="col-md-7">
+
+                                    <div class="pb-4">
+                                        {% if immobilier.document %}
+                                        <a href="{{ vich_uploader_asset(immobilier, 'documentFile') }}" class="btn btn-light" target="_blank">Voir le document</a>
+                                        {% else %}
+                                        <span>Aucun document joint</span>
+                                        {% endif %}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -302,7 +326,7 @@
         $(".custom-file-input").on("change", function() {
           var fileName = $(this).val().split("\\").pop();
           $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-        });
-        </script>
-    {{ encore_entry_script_tags('app') }}
-{% endblock %}
+      });
+  </script>
+  {{ encore_entry_script_tags('app') }}
+  {% endblock %}

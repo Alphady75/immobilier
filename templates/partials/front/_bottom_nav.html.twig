@@ -1,0 +1,25 @@
+<nav class="navbar navbar-hover navbar-expand-sm  navbar-light bg-white pt-2 pb-2">
+	<div class="container">
+		<a class="navbar-brand d-block d-sm-none" href="{{ path('accueil') }}">
+			<img src="{{ asset('themes/front/images/logo-stiky.png') }}" width="100" alt="{{ appName }} logo">
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav99">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="main_nav99">
+			<ul class="navbar-nav mx-auto">
+				<li class="nav-item">
+					<a href="{{ path('accueil') }}" class="nav-link {{ app.request.attributes.get('_route') == 'accueil' ? 'active' : '' }}"> Nos programmes </a>
+				</li>
+				<li class="nav-item">
+					<a href="{{ path('immobiliers') }}" class="nav-link {{ app.request.attributes.get('_route') == 'immobiliers' ? 'active' : '' }}"> Biens Immobiliers </a>
+				</li>
+				<li class="nav-item dropdown">
+					<a href="{{ path('annonces') }}" class="nav-link {{ app.request.attributes.get('_route') == 'annonces' ? 'active' : '' }}"> Actualités </a>
+				</li>
+
+				<li class="nav-item"><a class="nav-link {{ app.request.attributes.get('_route') == 'contact' ? 'active' : '' }}" href="{{ path('contact') }}"> contact </a></li>
+			</ul>
+		</div> <!-- navbar-collapse.// -->
+	</div>	
+</nav>

@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Immobilier;
+use App\Entity\SearchImmobilier;
+use App\Form\AdminSearchImmobilierType;
 use App\Form\ImmobilierType;
 use App\Entity\ImmobilierMedia;
 use App\Form\ImmobilierMediaType;
@@ -31,15 +33,19 @@ class AdminImmobiliersController extends AbstractController
         PaginatorInterface $paginator, Request $request
     ): Response
     {
-        $immobiliers = $paginator->paginate(
-            $immobilierRepository->findByDateDesc(),
-            $request->query->getInt('page', 1),
-            20
-        );
+        $search = new SearchImmobilier();
+        $search->page = $request->get('page', 1);
+
+        $form = $this->createForm(AdminSearchImmobilierType::class, $search);
+        $form->handleRequest($request);
+
+        $immobiliers = $immobilierRepository->findAllSearch($search);
 
         return $this->render('admin/admin_immobiliers/index.html.twig', [
             'immobiliers' => $immobiliers,
             'categories' => $categorieRepo->findByName(),
+            'form' => $form->createView(),
+            'current' => $search->page,
         ]);
     }
 

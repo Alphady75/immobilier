@@ -17,7 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 
-class SearchImmobilierType extends AbstractType
+class AdminSearchImmobilierType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -30,62 +30,49 @@ class SearchImmobilierType extends AbstractType
                 'class' => '',
             ]
         ])
-        ->add('tarif', IntegerType::class, [
-            'label' =>  false,
-            'required'  =>  false,
-            'attr'  =>  [
-                'class' => 'price-range',
-            ]
-        ])
         ->add('statut', ChoiceType::class, [
             'label' => false,
             'help' => 'Statut',
             'required' => false,
             'choices'  => [
-                'Tout les biens' => '',
+            	'Statut' => '',
                 'A vendre'    =>  'a-vendre',
                 'A louer' =>  'a-louer',
             ],
-            'attr' => ['class' => 'select_option w-100'],
-            'choice_attr' => ['class' => ''],
-            'label_attr' => ['class' => ''],
+            'attr' => ['class' => ''],
+            'choice_attr' => ['class' => 'checkbox'],
+            'label_attr' => ['class' => 'ui-check'],
         ])
         ->add('type', ChoiceType::class, [
             'label' => false,
-            'help' => 'Type de bien',
+            'help' => 'Type',
             'required' => false,
             'choices'  => [
-                'Tout les biens' => '',
+            	'Type' => '',
                 'Maison familialle'    =>  'maison-familliale',
                 'Maison unifamiliale' => 'maison-unifamiliale',
                 'Maison de luxe' => 'maison-de-luxe',
                 'Maison de campagne' => 'maison-compagne',
                 'Autre' => 'autre',
             ],
-            'attr' => ['class' => 'select_option w-100'],
-            'choice_attr' => ['class' => ''],
-            'label_attr' => ['class' => ''],
+            'attr' => ['class' => 'text-muted'],
+            'choice_attr' => ['class' => 'checkbox'],
+            'label_attr' => ['class' => 'ui-check'],
         ])
         ->add('minTarif', MoneyType::class, [
             'label' => false,
-            'help' => 'Budget minimum',
+            'help' => 'Budget min',
             'required' => false,
             'attr' => [
-                'placeholder' => 'minimum',
-                'class' => 'border-left-0',
-                'min' => 0,
-                'max' => 99999999999,
+                'placeholder' => 'Budget min',
             ]
         ])
         ->add('maxTarif', MoneyType::class, [
             'label' => false,
-            'help' => 'Bugdet maximum',
+            'help' => 'Bugdet max',
             'required' => false,
             'attr' => [
-                'placeholder' => 'maximum',
-                'class' => 'border-left-0',
-                'min' => 0,
-                'max' => 99999999999,
+                'placeholder' => 'Bugdet max',
             ]
         ])
         ->add('categories', EntityType::class, [
@@ -118,10 +105,11 @@ class SearchImmobilierType extends AbstractType
             'choice_label' => 'name',
             'attr' => ['class' => 'p-0 m-0 border-0']
         ])
-        /*->add('vendu', CheckboxType::class, [
-            'label' => "",
+        ->add('online', CheckboxType::class, [
+            'label' => "En ligne",
+            'help' => 'Visibilité',
             'required' => false
-        ])*/
+        ])
         ;
     }
 

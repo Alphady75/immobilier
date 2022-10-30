@@ -9,6 +9,13 @@ vich_uploader:
             delete_on_update: true
             delete_on_remove: true
 
+        immobiliers_documents:
+            uri_prefix: /uploads/images/immobiliers/documents
+            upload_destination: '%kernel.project_dir%/public/uploads/images/immobiliers/documents'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            delete_on_update: true
+            delete_on_remove: true
+
         immobiliers_medias:
             uri_prefix: /uploads/images/immobiliers/medias
             upload_destination: '%kernel.project_dir%/public/uploads/images/immobiliers/medias'
